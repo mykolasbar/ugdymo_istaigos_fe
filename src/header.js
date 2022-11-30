@@ -18,7 +18,7 @@ let auth = useContext(AuthContext)
                                 <Link className="nav-link" to="/customer">Klientams</Link>
                             </li>
                             {auth.isLoggedin() ? (<li className="nav-item active p-2">
-                                <Link className="nav-link" to="/myorders"></Link>
+                                <Link className="nav-link" to="/addpupil">Pridėti naują mokinį</Link>
                             </li>) : ("")}
                     {/* {auth.isLoggedinAdmin() ? "admin" : ""} */}
                     {auth.isLoggedinAdmin() ? (<>

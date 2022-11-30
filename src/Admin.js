@@ -48,17 +48,17 @@ const Admin = () => {
                 <div className="d-flex justify-content-between w-100">
                     <ul className="navbar-nav p-3">
                         <li className="nav-item active p-2">
-                            <Link className="nav-link" to="/admin/edithotels">Viešbučiai</Link>
+                            <Link className="nav-link" to="/admin/editschools">Mokyklos</Link>
                         </li>
                         <li className="nav-item p-2">
-                            <Link className="nav-link" to="/admin/editcountries">Šalys</Link>
+                            <Link className="nav-link" to="/admin/editrequests">Prašymai</Link>
                         </li>
-                        <li className="nav-item active p-2">
+                        {/* <li className="nav-item active p-2">
                             <Link className="nav-link" to="/admin/newhotel">Naujas viešbutis</Link>
                         </li>
                         <li className="nav-item active p-2">
                             <Link className="nav-link" to="/admin/orders">Užsakymai</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </nav>

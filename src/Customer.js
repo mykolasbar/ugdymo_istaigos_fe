@@ -20,16 +20,6 @@ const Customer = () => {
 
     var formData = new FormData();
 
-
-    // if (!auth.isLoggedin()) {navigate("/login");}
-
-    // useEffect(() => {
-    //     fetch("http://127.0.0.1:8000/api/countries?embed=hotels")
-    //     .then(response => response.json())
-    //     .then((result) => {setCountries(countries = result)})
-    // }, []);
-
-
     useEffect(() => {
         let url = "http://127.0.0.1:8000/api/schools/";
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
@@ -37,12 +27,6 @@ const Customer = () => {
         .then((result) => {setSchools(schools = result)})
         .then(() => {console.log(schools)})
     }, [countryId]);
-
-    // let sortByX = () => {
-    //     setReversed(!reversed)
-    //     hotels.sort((a, b) => {return reversed ? a.price-b.price : b.price-a.price})
-    //     setHotels([...hotels])
-    // }
 
     useEffect(() => {
             let id = auth.getUser()?.id;
@@ -113,7 +97,7 @@ const Customer = () => {
                                 </option>) 
                             }
                             </select> 
-                            <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, schools_id: school.id }); console.log(data)}}></input></td>) : ("")}
+                            <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, 'schools_id': school.id }); console.log(data)}}></input></td>) : ("")}
                         </tr>)}
                         </tbody>
                     </table>
