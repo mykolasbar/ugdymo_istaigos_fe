@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+<h2>Description</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A school management system with registered user and admin roles, in addition to unregistered user. Functionality for viewing and searching schools as well as registering pupils and making requests for them to join specific schools on the user side and adding, removing and updating schools, as well as confirming requests, on the admin side.
 
-## Available Scripts
+Pupil's date of birth automatically extracted, appropriately formatted and stored on the database from the pupil's personal ID code.
 
-In the project directory, you can run:
+React.js used for frontend and Laravel for backend. Used token-based authentication with sanctum, in addition to protected routes on the frontend.
 
-### `npm start`
+This is the frontend repository. You can access the backend repository <a href = "https://github.com/mykolasbar/ugdymo_istaigos/">here</a>.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>Instructions for launch</h2>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h2>Functionality</h2>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<ul>
+    <li>User roles:<li>
+        <ul>
+            <li>Unregistered user</li>
+            <li>Registered user</li>
+            <li>Admin</li>
+        </ul>
+    <li>Unregistered user:</li>
+        <ul>
+            <li>View schools</li>
+            <li>Search schools (by their name)</li>
+        </ul>
+    <li>Regular user:</li>
+        <ul>
+            <li>View schools</li>
+            <li>Search schools (by their name)</li>
+            <li>Add one or more pupils</li>
+            <li>Send a request for a pupil to be registered to a particular school</li>
+        </ul>
+    <li>Admin</li>
+        <ul>
+            <li>Add, update, delete schools</li>
+            <li>Add pupils</li>
+            <li>See list of incoming requests</li>
+            <li>Confirm pupil requests</li>
+        </ul>
+</ul>
 
-### `npm run build`
+<h2>Launch instructions</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The project is not deployed online, so in order to view it, you will have to download it from github and launch it on the live server.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<ul>
+    <li>Launch your apache server and MySQL</li>
+    <li>Clone or download the github repository</li>
+    <li>Import the database (Dump20221021 file in the downloaded repository) with MySQL Workbench or similar software</li>
+    <li>Launch the development server for the backup section on port http://127.0.0.1:8000/ (instructions <a href = "https://github.com/mykolasbar/cms_blog">here</a>)</li>
+    <li>In case your do not have it, install npm (node package manager) and launch the development server from the app directory with your cli (npm start). The user page should load</li>
+    <li>To reach the admin section, register an account (http://localhost:3000/register) and login with your credentials</li>
+</ul>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Made by Mykolas Baranauskas. <a href = "https://www.linkedin.com/in/mykolas-baranauskas-b3809b110/" target = "_blank">Linkedin</a>.
