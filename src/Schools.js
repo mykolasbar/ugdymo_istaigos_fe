@@ -18,13 +18,18 @@ const Schools = () => {
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
 
-    let [currentPage, setCurrentPage] = useState(1)
-    let [recordsPerPage, setRecordsPerPage] = useState(6)
+    let [page, setPage] = useState(1)
+    let [recordsPerPage, setRecordsPerPage] = useState(5)
+    let [schoolsPage, setSchoolsPage] = useState([])
+    let [pageNumbers, setPageNumbers] = useState([])
 
-    let indexOfLastPost = currentPage * recordsPerPage
+    let indexOfLastPost = page * recordsPerPage
     let indexOfFirstPost = indexOfLastPost - recordsPerPage
+    let [totalPages, setTotalPages] = useState()
 
-
+    let setCurrentPage = (pageNumber) => {
+        setPage(page = pageNumber)
+    }
 
     const handleData = (event) => {
         setData({...data, [event.target.name] : event.target.value })
@@ -35,6 +40,9 @@ const Schools = () => {
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
+        .then(() => setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)))
+        .then(result => setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)), console.log(totalPages))
+
 
 
         // setSchools(schools = schools.slice(indexOfFirstPost, indexOfLastPost))
@@ -83,7 +91,7 @@ const Schools = () => {
                         <td name = "kaina"><b>Kodas</b></td>
                         <td name = "nuotrauka" ><b>Adresas</b></td>
                         </tr>
-                        {schools.map((school, index) => 
+                        {schoolsPage.map((school, index) => 
                         <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
                             <td>{school.title}</td>
                             <td>{school.code}</td>
@@ -91,7 +99,7 @@ const Schools = () => {
                             <td><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą"></input></td>
                             <td><button className="btn btn-dark btn-sm m-2 rounded-0"><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none"}}>Atnaujinti mokyklos duomenis</Link></button></td>
                         </tr>)}
-                        <Pagination />
+                        <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
                         </tbody>
                     </table>
         </>

@@ -3,17 +3,8 @@ import React, { useState, useEffect, useContext, useRef, useCallback }  from 're
 
 const Pagination = (props) => {
     let [pageNumbers, setPageNumbers] = useState([])
-    let [finalPage, setFinalPage] = useState()
-
-    // let [currentPage, setCurrentPage] = useState(1)
-    // let [recordsPerPage, setRecordsPerPage] = useState(10)
-
-    // let indexOfLastPost = currentPage * recordsPerPage
-    // let indexOfFirstPost = indexOfLastPost - recordsPerPage
-    // let currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     useEffect(() => {
-        setFinalPage(props.totalPages)
         console.log(props.totalPages)
         for (let i = 1; i <= props.totalPages; i++) {
             pageNumbers.push(i);

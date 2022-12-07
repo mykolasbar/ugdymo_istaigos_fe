@@ -36,7 +36,7 @@ const Customer = () => {
 
     useEffect(() => {
         let url = "http://127.0.0.1:8000/api/schools/";
-        totalPages = Math.ceil(schools.length / recordsPerPage)
+        // totalPages = Math.ceil(schools.length / recordsPerPage)
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
