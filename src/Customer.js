@@ -108,7 +108,7 @@ const Customer = () => {
                         </tbody>
                     </table>
                     </form>
-                    <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = { page }/>
+                    <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
                 </div> 
             </div>
         </>

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useRef, useCallback }  from 're
 
 const Pagination = (props) => {
     let [pageNumbers, setPageNumbers] = useState([])
+    let [finalPage, setFinalPage] = useState()
 
     // let [currentPage, setCurrentPage] = useState(1)
     // let [recordsPerPage, setRecordsPerPage] = useState(10)
@@ -12,6 +13,8 @@ const Pagination = (props) => {
     // let currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     useEffect(() => {
+        setFinalPage(props.totalPages)
+        console.log(props.totalPages)
         for (let i = 1; i <= props.totalPages; i++) {
             pageNumbers.push(i);
             console.log(i)
@@ -28,13 +31,16 @@ const Pagination = (props) => {
                     <a className="page-link" href="#" tabIndex="-1">Previous</a>
                 </li> : 
                 <li className="page-item">
-                <a className="page-link" href="#" tabIndex="-1">Previous</a>
+                <a className="page-link" href="#" tabIndex="-1" onClick={() => {props.setCurrentPage(props.page - 1)}}>Ankstesnis</a>
             </li>}
                 {pageNumbers.map((pageNumber)=><li className="page-item" key = {pageNumber}><a a href = "#" className="page-link" onClick={() => {props.setCurrentPage(pageNumber); console.log(pageNumber)}}>{pageNumber}</a></li>)}
+                {props.page == props.totalPages ?
+                <li className="page-item disabled">
+                    <a className="page-link">Sekantis</a>
+                </li> :
                 <li className="page-item">
-                    <a className="page-link" href="#">Next</a>
-                </li>
-
+                <a className="page-link" href="#" onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
+            </li>}
             </ul>
         </>
     );
