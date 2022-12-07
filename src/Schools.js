@@ -21,15 +21,15 @@ const Schools = () => {
     let [page, setPage] = useState(1)
     let [recordsPerPage, setRecordsPerPage] = useState(5)
     let [schoolsPage, setSchoolsPage] = useState([])
-    let [pageNumbers, setPageNumbers] = useState([])
-
-    let indexOfLastPost = page * recordsPerPage
-    let indexOfFirstPost = indexOfLastPost - recordsPerPage
-    let [totalPages, setTotalPages] = useState()
 
     let setCurrentPage = (pageNumber) => {
         setPage(page = pageNumber)
     }
+    let indexOfLastPost = page * recordsPerPage
+    let indexOfFirstPost = indexOfLastPost - recordsPerPage
+    let [totalPages, setTotalPages] = useState()
+
+
 
     const handleData = (event) => {
         setData({...data, [event.target.name] : event.target.value })
@@ -40,14 +40,9 @@ const Schools = () => {
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
-        .then(() => setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)))
-        .then(result => setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)), console.log(totalPages))
-
-
-
-        // setSchools(schools = schools.slice(indexOfFirstPost, indexOfLastPost))
-    
-    }, [refresh]);
+        .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage))})
+        .then(result => setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)), console.log(indexOfLastPost))    
+    }, [refresh, page]);
 
     let handleDelete = (id) => {
         console.log(id)
@@ -99,9 +94,10 @@ const Schools = () => {
                             <td><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą"></input></td>
                             <td><button className="btn btn-dark btn-sm m-2 rounded-0"><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none"}}>Atnaujinti mokyklos duomenis</Link></button></td>
                         </tr>)}
-                        <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
                         </tbody>
                     </table>
+                    <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
+
         </>
     );
 };

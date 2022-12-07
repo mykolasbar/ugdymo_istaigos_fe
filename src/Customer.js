@@ -36,7 +36,6 @@ const Customer = () => {
 
     useEffect(() => {
         let url = "http://127.0.0.1:8000/api/schools/";
-        // totalPages = Math.ceil(schools.length / recordsPerPage)
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
@@ -96,7 +95,7 @@ const Customer = () => {
                             <td>{school.address}</td>
                             {auth.isLoggedin() ? (<td>
                                 <select name = "requests_id" className="form-control" onChange={(event)=>{setData({ ...data, 'requests_id': event.target.value })}}>
-                                <option value="N/A" className="form-control" ></option>
+                                <option value="N/A" className="form-control" >Pasirinkite mokinį</option>
                             { pupils.map((pupil) => 
                                 <option name = "requests_id" className = "m-4" key = {pupil.id} value = {pupil.id}> 
                                     {pupil.id} {pupil.name}
