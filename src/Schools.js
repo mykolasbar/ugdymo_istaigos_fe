@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
 // import Getmeal from './meal';
 import Header from './header';
+import Pagination from './Pagination';
 
 const Schools = () => {
     let [reversed, setReversed] = useState(false)
@@ -17,6 +18,14 @@ const Schools = () => {
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
 
+    let [currentPage, setCurrentPage] = useState(1)
+    let [recordsPerPage, setRecordsPerPage] = useState(6)
+
+    let indexOfLastPost = currentPage * recordsPerPage
+    let indexOfFirstPost = indexOfLastPost - recordsPerPage
+
+
+
     const handleData = (event) => {
         setData({...data, [event.target.name] : event.target.value })
     }
@@ -26,7 +35,10 @@ const Schools = () => {
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
-        // .then(() => {console.log(schools)})
+
+
+        // setSchools(schools = schools.slice(indexOfFirstPost, indexOfLastPost))
+    
     }, [refresh]);
 
     let handleDelete = (id) => {
@@ -37,7 +49,7 @@ const Schools = () => {
     }
 
     let handleSubmit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         fetch("http://127.0.0.1:8000/api/addschool", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then((result)=>console.log(result))
         .then(() => {
@@ -70,17 +82,16 @@ const Schools = () => {
                         <tr><td><b>Pavadinimas</b></td>
                         <td name = "kaina"><b>Kodas</b></td>
                         <td name = "nuotrauka" ><b>Adresas</b></td>
-                        {/* <td name = "trukme" onClick={(e)=>sortByX(e.target.name)}><b>Kelionės trukmė</b></td> */}
                         </tr>
                         {schools.map((school, index) => 
                         <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
                             <td>{school.title}</td>
                             <td>{school.code}</td>
-                            {/* <td>{hotel.picture !== "" || null ? <img src= {'http://localhost:8000/' + hotel.picture}  alt = {hotel.picture} style = {{maxWidth: "200px", maxHeight: "100px", border: "1px solid"}}/> : "Nuotraukos nėra"}</td> */}
                             <td>{school.address}</td>
                             <td><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą"></input></td>
                             <td><button className="btn btn-dark btn-sm m-2 rounded-0"><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none"}}>Atnaujinti mokyklos duomenis</Link></button></td>
                         </tr>)}
+                        <Pagination />
                         </tbody>
                     </table>
         </>
