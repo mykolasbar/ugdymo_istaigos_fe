@@ -16,6 +16,9 @@ const Admin = () => {
                         <li className="nav-item p-2">
                             <Link className="nav-link" to="/admin/editrequests">Prašymai</Link>
                         </li>
+                        <li className="nav-item p-2">
+                            <Link className="nav-link" to="/admin/newschool">Nauja mokykla</Link>
+                        </li>
                     </ul>
                 </div>
             </nav>

@@ -19,7 +19,7 @@ const Pagination = (props) => {
             <ul className="pagination">
                 {props.page == 1 ?
                 <li className="page-item disabled">
-                    <a className="page-link" href="#" tabIndex="-1">Previous</a>
+                    <a className="page-link" href="#" tabIndex="-1">Ankstesnis</a>
                 </li> : 
                 <li className="page-item">
                 <a className="page-link" href="#" tabIndex="-1" onClick={() => {props.setCurrentPage(props.page - 1)}}>Ankstesnis</a>

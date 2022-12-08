@@ -28,10 +28,10 @@ function App() {
               <Route path='/admin' element={<Protected ><Admin /></Protected>}>
                   <Route path='editschools' default element={<Schools/>} />
                   <Route path='editrequests' element={<Requests/>} />
+                  <Route path ='newschool' element = {<NewSchool />}/>
                   <Route index element={<Schools/>} />
               </Route>
             <Route path ='editschool/:id' element = {<Protected><EditSchool /></Protected>}/>
-            <Route path ='newschool' element = {<Protected><NewSchool /></Protected>}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>

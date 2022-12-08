@@ -11,8 +11,6 @@ const Schools = () => {
     let [refresh, setRefresh] = useState(false)
     let auth = useContext(AuthContext)
     let navigate = useNavigate()
-    let [countries, setCountries] = useState([])
-    let [countryId, setCountryId] = useState('')
     let [schools, setSchools] = useState([])
     let [query, setQuery] = useState('')
     let [pupils, setPupils] = useState([])
@@ -29,8 +27,6 @@ const Schools = () => {
     let indexOfFirstPost = indexOfLastPost - recordsPerPage
     let [totalPages, setTotalPages] = useState()
 
-
-
     const handleData = (event) => {
         setData({...data, [event.target.name] : event.target.value })
     }
@@ -42,7 +38,7 @@ const Schools = () => {
         .then((result) => {setSchools(schools = result)})
         .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage))})
         .then(result => setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)), console.log(indexOfLastPost))    
-    }, [refresh, page]);
+    }, [refresh, page, totalPages]);
 
     let handleDelete = (id) => {
         console.log(id)
@@ -58,46 +54,46 @@ const Schools = () => {
         .then(() => {
             setRefresh(!refresh)
         })
-        
     }
 
 
     return (
-        <>                    
-            <div className = "card border-1 mt-5 p-2 w-75 rounded-0">
-                <form onSubmit = { handleSubmit }>
-                <span className = "card border-0 mt-4"><h3>Pridėti naują mokyklą</h3></span>
-                <div className="form-group mt-2">
-                    <input className="form-control h-100" type = "text" name = "title" onChange={handleData} placeholder = "Mokyklos pavadinimas"></input>
-                </div>
-                <div className="form-group mt-2">
-                    <input className="form-control h-100" type = "text" name = "code" onChange={handleData} placeholder = "Mokyklos kodas"></input>
-                </div>
-                <div className="form-group mt-2">
-                    <input className="form-control h-100" type = "text" name = "address" onChange={handleData} placeholder = "Mokyklos adresas"></input>
-                </div>
+        <>  
+            <div className = "card border-0 mt-2 p-2 w-75 rounded-0">
+                <Link to = {'/admin/newschool/'} style={{color: "black"}}>Pridėti naują mokyklą</Link>
+
+                {/* <form onSubmit = { handleSubmit }>
+                    <span className = "card border-0 mt-4"><h3>Pridėti naują mokyklą</h3></span>
+                    <div className="form-group mt-2">
+                        <input className="form-control h-100" type = "text" name = "title" onChange={handleData} placeholder = "Mokyklos pavadinimas"></input>
+                    </div>
+                    <div className="form-group mt-2">
+                        <input className="form-control h-100" type = "text" name = "code" onChange={handleData} placeholder = "Mokyklos kodas"></input>
+                    </div>
+                    <div className="form-group mt-2">
+                        <input className="form-control h-100" type = "text" name = "address" onChange={handleData} placeholder = "Mokyklos adresas"></input>
+                    </div>
                     <input type = "submit" value = "Pridėti" className="btn btn-dark btn-sm m-2"></input>
-                </form>
+                </form> */}
             </div>
-                    <table className = "table-borderless m-2 w-75">
-                        <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
-                        <tbody>
-                        <tr><td><b>Pavadinimas</b></td>
+                <table className = "table-borderless m-2 w-75">
+                    <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
+                    <tbody>
+                    <tr><td><b>Pavadinimas</b></td>
                         <td name = "kaina"><b>Kodas</b></td>
                         <td name = "nuotrauka" ><b>Adresas</b></td>
-                        </tr>
-                        {schoolsPage.map((school, index) => 
-                        <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
-                            <td>{school.title}</td>
-                            <td>{school.code}</td>
-                            <td>{school.address}</td>
-                            <td><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą"></input></td>
-                            <td><button className="btn btn-dark btn-sm m-2 rounded-0"><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none"}}>Atnaujinti mokyklos duomenis</Link></button></td>
-                        </tr>)}
-                        </tbody>
-                    </table>
-                    <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
-
+                    </tr>
+                    {schoolsPage.map((school, index) => 
+                    <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
+                        <td>{school.title}</td>
+                        <td>{school.code}</td>
+                        <td>{school.address}</td>
+                        <td><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą"></input></td>
+                        <td><button className="btn btn-dark btn-sm m-2 rounded-0"><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none"}}>Atnaujinti mokyklos duomenis</Link></button></td>
+                    </tr>)}
+                    </tbody>
+                </table>
+                <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
         </>
     );
 };

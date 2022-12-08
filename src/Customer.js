@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
 // import Getmeal from './meal';
 import Header from './header';
+import Slidinggallery from './slidinggallery';
 import Pagination from './Pagination';
 import Order from './Order';
 
@@ -12,7 +13,6 @@ const Customer = () => {
     let [refresh, setRefresh] = useState(false)
     let auth = useContext(AuthContext)
     let navigate = useNavigate()
-    let [countries, setCountries] = useState([])
     let [schools, setSchools] = useState([])
     let [query, setQuery] = useState('')
     let [pupils, setPupils] = useState([])
@@ -26,6 +26,13 @@ const Customer = () => {
     let indexOfLastPost = page * recordsPerPage
     let indexOfFirstPost = indexOfLastPost - recordsPerPage
     let [totalPages, setTotalPages] = useState()
+
+    const images = [
+        {src: "mokykla1.jpg"},
+        {src: "mokykla2.jpg"},
+        {src: "mokykla3.jpg"},
+        {src: "mokykla4.jpg"}
+    ]
 
 
     var formData = new FormData();
@@ -72,12 +79,13 @@ const Customer = () => {
     return (
         <>
         <Header />
+        <Slidinggallery images = {images}/>
             <div className="d-flex flex-column">
                 <div className = "m-3">
                     <div>
                         <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
                         <input type="search" id="site-search" name="query" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
-                        <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Search</button>
+                        <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
                     </div>
                     <form onSubmit = { handleSubmit }>
                     <table className = "table-borderless m-2 w-75">
