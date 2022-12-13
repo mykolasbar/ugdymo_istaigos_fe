@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.schoolinfo {
+  border:1px solid grey;
+  border-radius: 0 0 10px 10px;
+}
+
+#schoolBox {
+  width: 47%;
+  height: 200px;
+}
+
+#schoolsBox {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+  row-gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* .schoolinfo:before {
+  background-color: white;
+  border:1px solid grey;
+  border-radius: 0 0 10px 10px;
+} */

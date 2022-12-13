@@ -7,7 +7,7 @@ const Admin = () => {
     return (
         <>
         <Header />
-        <nav className="navbar-expand-lg navbar-light bg-primary p-2 w-100 d-flex flex-row align-items-center">
+        <nav className="navbar-expand-lg navbar-light bg-primary p-2 w-100 d-flex flex-row align-items-center" style = {{height:"80px"}}>
                 <div className="d-flex justify-content-between w-100">
                     <ul className="navbar-nav p-3">
                         <li className="nav-item active p-2">

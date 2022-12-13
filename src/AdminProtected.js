@@ -3,19 +3,17 @@ import { AuthContext } from "./Auth"
 import Header from './header';
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
-
-const Protected = ({ children }) => {
+const AdminProtected = ({ children }) => {
 
     let auth = useContext(AuthContext)
 
-    if (auth.isLoggedin() || auth.isLoggedinAdmin()) {
-        return children;
-        }
+    if (!auth.isLoggedinAdmin()) {
 
-    if (!auth.isLoggedin() || !auth.isLoggedinAdmin()) {
         return <Navigate to="/" replace />;
-        }
+    }
     
-    };
 
-export default Protected;
+    return children;
+};
+
+export default AdminProtected;

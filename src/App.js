@@ -11,7 +11,10 @@ import Admin from './Admin';
 import Order from './Order';
 import EditSchool from './EditSchool';
 import NewSchool from './NewSchool';
+import Customer2 from './Customer2';
+import RegisterPupil from './RegisterPupil';
 import Protected from './Protected';
+import AdminProtected from './AdminProtected';
 // import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
 
@@ -23,15 +26,16 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Customer/>} />
-            <Route path='/customer' element={<Customer/>} />
-            <Route path='/addpupil' element={<Protected><Order/></Protected>} />
-              <Route path='/admin' element={<Protected ><Admin /></Protected>}>
+            <Route path='/customer' element={<Customer2/>} />
+            <Route path='/addpupil' element={<Order/>} />
+            <Route path='/registerpupil/:id' element={<RegisterPupil/>} />
+              <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
                   <Route path='editschools' default element={<Schools/>} />
                   <Route path='editrequests' element={<Requests/>} />
                   <Route path ='newschool' element = {<NewSchool />}/>
                   <Route index element={<Schools/>} />
               </Route>
-            <Route path ='editschool/:id' element = {<Protected><EditSchool /></Protected>}/>
+            <Route path ='editschool/:id' element = {<AdminProtected><EditSchool /></AdminProtected>}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>

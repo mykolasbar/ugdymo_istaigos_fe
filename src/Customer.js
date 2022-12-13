@@ -15,6 +15,7 @@ const Customer = () => {
     let navigate = useNavigate()
     let [schools, setSchools] = useState([])
     let [query, setQuery] = useState('')
+    let [showSearchResults, setShowSearchResults] = useState(false)
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
 
@@ -68,6 +69,7 @@ const Customer = () => {
     }
 
     let handleSerch = (event) => {
+        setShowSearchResults(!showSearchResults)
         // event.preventDefault()
         console.log(query)
         fetch("http://127.0.0.1:8000/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
@@ -79,15 +81,15 @@ const Customer = () => {
     return (
         <>
         <Header />
+        <div className="d-flex justify-content-end">
+            <div >
+                <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
+                <input type="search" id="site-search" name="query" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
+                <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
+                </div>
+        </div>
         <Slidinggallery images = {images}/>
-            <div className="d-flex flex-column">
-                <div className = "m-3">
-                    <div>
-                        <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
-                        <input type="search" id="site-search" name="query" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
-                        <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
-                    </div>
-                    <form onSubmit = { handleSubmit }>
+                    <form onSubmit = { handleSubmit } className = "container">         
                     <table className = "table-borderless m-2 w-75">
                         <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
                         <tbody>
@@ -95,7 +97,27 @@ const Customer = () => {
                         <td name = "kaina"><b>Kodas</b></td>
                         <td name = "nuotrauka" ><b>Adresas</b></td>
                         {auth.isLoggedin() ? (<td><b>Užsakymas</b></td>) : ("")}</tr>
-                        {schoolsPage.map((school, index) => 
+
+                        {!showSearchResults ?
+                        schoolsPage.map((school, index) => 
+                        <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
+                            <td>{school.title}</td>
+                            <td>{school.code}</td>
+                            {/* <td>{hotel.picture !== "" || null ? <img src= {'http://localhost:8000/' + hotel.picture}  alt = {hotel.picture} style = {{maxWidth: "200px", maxHeight: "100px", border: "1px solid"}}/> : "Nuotraukos nėra"}</td> */}
+                            <td>{school.address}</td>
+                            {auth.isLoggedin() ? (<td>
+                                <select name = "requests_id" className="form-control" onChange={(event)=>{setData({ ...data, 'requests_id': event.target.value })}}>
+                                    <option value="N/A" className="form-control" >Pasirinkite mokinį</option>
+                                { pupils.map((pupil) => 
+                                    <option name = "requests_id" className = "m-4" key = {pupil.id} value = {pupil.id}> 
+                                        {pupil.id} {pupil.name}
+                                    </option>) 
+                                }
+                                </select> 
+                            <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, 'schools_id': school.id }); console.log(data)}}></input></td>) : ("")}
+                        </tr>)
+                        :
+                        schools.map((school, index) => 
                         <tr key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
                             <td>{school.title}</td>
                             <td>{school.code}</td>
@@ -111,19 +133,15 @@ const Customer = () => {
                             }
                             </select> 
                             <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, 'schools_id': school.id }); console.log(data)}}></input></td>) : ("")}
-                        </tr>)}
+                        </tr>)
+
+                        }
                         </tbody>
                     </table>
                     </form>
                     <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
-                </div> 
-            </div>
         </>
     );
 };
 
 export default Customer;
-
-{/* <AverageEvaluation mealId = {meal.id} restaurantId = {restaurantId}/> */}
-
-{/* <td><Getmeal id = {meal.id} /></td> */}
