@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext, useRef, useCallback }  from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
-// import Getmeal from './meal';
 import Header from './header';
 import Slidinggallery from './slidinggallery';
+import Slidinggallery2 from './slidinggallery2';
 import Pagination from './Pagination';
 import Order from './Order';
+import ShowSchool from './ShowSchool';
 
 const Customer2 = () => {
     let [reversed, setReversed] = useState(false)
@@ -37,7 +38,6 @@ const Customer2 = () => {
         {src: "mokykla3.jpg"},
         {src: "mokykla4.jpg"}
     ]
-
 
     var formData = new FormData();
 
@@ -88,7 +88,7 @@ const Customer2 = () => {
     return (
         <>
         <Header />
-        <Slidinggallery images = {images}/>
+        <Slidinggallery2 images = {images}/>
 
         <form onSubmit = { handleSubmit }>
             <div className = "container w-75 p-2">
@@ -104,21 +104,22 @@ const Customer2 = () => {
                 <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
                     {!showSearchResults ?
                     schoolsPage.map((school, index) =>
-                        <div id = "schoolBox"><div style = {{backgroundColor: "black", color: "white", borderRadius: "10px 10px 0 0", padding: "5px", width: "100%" }}>{school.title}</div> 
-                            <div onMouseEnter={(event) => {event.target.style.fontSize = "16px"; event.target.style.backgroundImage = "none"; console.log(event.target.childNodes)}} onMouseLeave={(event) => {event.target.style.backgroundImage = "URL(http://localhost:8000/" + school.picture + ")"; event.target.style.fontSize = "0"}} style = {{padding: "5px", backgroundImage: "URL(http://localhost:8000/" + school.picture + ")", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", fontSize: "0", borderRadius: "0 0 10px 10px"}}> 
+                        <ShowSchool title = {school.title} picture = {school.picture}>
+                            <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                                 <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
                                 <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link>
                             </div>
-                        </div>
+                        </ShowSchool>
                     )
                     :
                     schools.map((school, index) =>
-                    <div id = "schoolBox"><div style = {{backgroundColor: "black", color: "white", borderRadius: "10px 10px 0 0", padding: "5px", width: "100%" }}>{school.title}</div> 
-                        <div onMouseEnter={(event) => {event.target.style.fontSize = "16px"; event.target.style.backgroundImage = "none"; console.log(event.target.childNodes)}} onMouseLeave={(event) => {event.target.style.backgroundImage = "URL(http://localhost:8000/" + school.picture + ")"; event.target.style.fontSize = "0"}} style = {{padding: "5px", backgroundImage: "URL(http://localhost:8000/" + school.picture + ")", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", fontSize: "0", borderRadius: "0 0 10px 10px"}}> 
+                    <ShowSchool title = {school.title} picture = {school.picture}>
+                        <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                             <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
                             <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link>
                         </div>
-                    </div>)
+                    </ShowSchool>
+                    )
                     }
                 </div>
             <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
