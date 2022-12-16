@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext, useRef, useCallback }  from 'react';
+import React, { useState, useEffect }  from 'react';
 
 const Slidinggallery2 = (props) => {
     let [imgindex, setImgIndex] = useState(0)
     let [percentage, setPercentage] = useState(0)
-    let [width, setWidth] = useState(100)
+    let [width, setWidth] = useState(100 * props.images.length)
 
     useEffect(() => {
         setTimeout(() => {
@@ -15,11 +15,6 @@ const Slidinggallery2 = (props) => {
             }
         }, 3000);
     }, [imgindex]);
-    
-    useEffect(()=>{
-        setWidth(width = width * props.images.length)
-        console.log(width)
-    }, []);
 
 
     return (

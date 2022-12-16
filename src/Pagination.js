@@ -5,12 +5,9 @@ const Pagination = (props) => {
     let [pageNumbers, setPageNumbers] = useState([])
 
     useEffect(() => {
-        console.log(props.totalPages)
         for (let i = 1; i <= props.totalPages; i++) {
             pageNumbers.push(i);
-            console.log(i)
         }
-    
         }, [props.totalPages]);
         
 
@@ -19,18 +16,18 @@ const Pagination = (props) => {
             <ul className="pagination">
                 {props.page == 1 ?
                 <li className="page-item disabled">
-                    <a className="page-link" href="#" tabIndex="-1">Ankstesnis</a>
+                    <a className="page-link" style={{cursor:"pointer"}} tabIndex="-1">Ankstesnis</a>
                 </li> : 
                 <li className="page-item">
-                <a className="page-link" href="#" tabIndex="-1" onClick={() => {props.setCurrentPage(props.page - 1)}}>Ankstesnis</a>
-            </li>}
+                    <a className="page-link" tabIndex="-1" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page - 1)}}>Ankstesnis</a>
+                </li>}
                 {pageNumbers.map((pageNumber)=><li className="page-item" key = {pageNumber}><a a href = "#" className="page-link" onClick={() => {props.setCurrentPage(pageNumber); console.log(pageNumber)}}>{pageNumber}</a></li>)}
                 {props.page == props.totalPages ?
                 <li className="page-item disabled">
                     <a className="page-link">Sekantis</a>
                 </li> :
                 <li className="page-item">
-                <a className="page-link" href="#" onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
+                <a className="page-link" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
             </li>}
             </ul>
         </>

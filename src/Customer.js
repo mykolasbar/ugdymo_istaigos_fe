@@ -114,7 +114,7 @@ const Customer = () => {
                                     </option>) 
                                 }
                                 </select> 
-                            <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, 'schools_id': school.id }); console.log(data)}}></input></td>) : ("")}
+                            <input type = "submit" name = {school.id} value = "Rezervuoti" className="btn btn-dark btn-sm m-2" onClick={(event) => {setData({ ...data, 'schools_id': school.id })}}></input></td>) : ("")}
                         </tr>)
                         :
                         schools.map((school, index) => 
@@ -126,7 +126,7 @@ const Customer = () => {
                             {auth.isLoggedin() ? (<td>
                                 <select name = "requests_id" className="form-control" onChange={(event)=>{setData({ ...data, 'requests_id': event.target.value })}}>
                                 <option value="N/A" className="form-control" >Pasirinkite mokinį</option>
-                            { pupils.map((pupil) => 
+                            {pupils.map((pupil) => 
                                 <option name = "requests_id" className = "m-4" key = {pupil.id} value = {pupil.id}> 
                                     {pupil.id} {pupil.name}
                                 </option>) 

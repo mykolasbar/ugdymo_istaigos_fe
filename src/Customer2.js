@@ -2,10 +2,8 @@ import React, { useState, useEffect, useContext, useRef, useCallback }  from 're
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
 import Header from './header';
-import Slidinggallery from './slidinggallery';
 import Slidinggallery2 from './slidinggallery2';
 import Pagination from './Pagination';
-import Order from './Order';
 import ShowSchool from './ShowSchool';
 
 const Customer2 = () => {
@@ -19,6 +17,8 @@ const Customer2 = () => {
     let [showSearchResults, setShowSearchResults] = useState(false)
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
+    const [loading, setLoading] = useState(false)
+
 
     let [page, setPage] = useState(1)
     let [recordsPerPage, setRecordsPerPage] = useState(6)
@@ -46,13 +46,14 @@ const Customer2 = () => {
     }
 
     useEffect(() => {
+        setLoading(true)
         let url = "http://127.0.0.1:8000/api/schools/";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
         .then(() => setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)))
-        .then(result => setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)), console.log(totalPages))
+        .then(result => {setLoading(false); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)); console.log(totalPages)})
     }, [page]);
 
     useEffect(() => {
@@ -77,13 +78,9 @@ const Customer2 = () => {
         console.log(query)
         fetch("http://127.0.0.1:8000/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
-        .then((result) => {setSchools(schools = result)})
+        .then((result) => {setLoading(false); setSchools(schools = result)})
         .then(console.log(schools))
     }
-
-    let demo = React.createElement(
-        "h1", { style: { color: "green" } }, "Welcome to GeeksforGeeks"
-    )
 
     return (
         <>
@@ -101,6 +98,7 @@ const Customer2 = () => {
                     </div>
                 </div>
                 </div>
+                {loading && <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>}
                 <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
                     {!showSearchResults ?
                     schoolsPage.map((school, index) =>
@@ -109,8 +107,7 @@ const Customer2 = () => {
                                 <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
                                 <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link>
                             </div>
-                        </ShowSchool>
-                    )
+                        </ShowSchool>)
                     :
                     schools.map((school, index) =>
                     <ShowSchool title = {school.title} picture = {school.picture}>
@@ -124,7 +121,6 @@ const Customer2 = () => {
                 </div>
             <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
             </div>
-            {test}
         </form>
         
         </>

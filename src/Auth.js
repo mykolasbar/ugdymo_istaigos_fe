@@ -7,6 +7,7 @@ export let AuthProvider = ({children}) => {
     let [user, setUser] = useState(null)
     let [admin, setAdmin] = useState(null)
     let [role, setRole] = useState(null)
+    let [userId, setUserId] =  useState(null)
 
     let [token, setToken] = useState(null)
     let navigate = useNavigate
@@ -16,26 +17,31 @@ export let AuthProvider = ({children}) => {
         setToken(token = JSON.parse(localStorage.getItem("token")))
         if (user != null){
             setRole(role = user.role)
-            console.log(user.role)}
+            setUserId(userId = user.id)
+            console.log(userId)
+            // console.log(user.id)
+        }
     }, []);
 
     let login = (user, token, role) => {
         if (user != null){
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
-        console.log(user);
-        setRole(role = user.role)
-        setToken(token);}
-
+            localStorage.setItem("token", JSON.stringify(token));
+            localStorage.setItem("user", JSON.stringify(user));
+            setUser(user);
+            console.log(user);
+            setRole(role = user.role)
+            setToken(token);
+            setUserId(userId = user.id)
+            console.log(userId)
+        }
     };
 
-    let adminLogin = (admin, token) => {
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("admin", JSON.stringify(admin));
-        setAdmin(admin);
-        setToken(token);
-    };
+    // let adminLogin = (admin, token) => {
+    //     localStorage.setItem("token", JSON.stringify(token));
+    //     localStorage.setItem("admin", JSON.stringify(admin));
+    //     setAdmin(admin);
+    //     setToken(token);
+    // };
 
     let logout = () => {
         fetch('http://localhost:8000/api/logout', {method: "POST", headers: { Accept: "application/json", Authorization: `Bearer ${token}` }})
@@ -52,6 +58,8 @@ export let AuthProvider = ({children}) => {
             (err) => {}
         );
     };
+    
+    let getUserId = ()=> userId;
 
     let getUser = () => user;
     let getAdmin = () => admin;
@@ -61,7 +69,7 @@ export let AuthProvider = ({children}) => {
 
 
     return (
-        <AuthContext.Provider value={{ login, isLoggedin, logout, getUser, getToken, adminLogin, getAdmin, isLoggedinAdmin }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ login, isLoggedin, logout, getUser, getToken, getAdmin, isLoggedinAdmin, getUserId }}>{children}</AuthContext.Provider>
     );
 
 

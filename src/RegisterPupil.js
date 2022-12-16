@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext, useRef }  from 'react';
+import React, { useState, useEffect, useContext }  from 'react';
 import { AuthContext } from "./Auth"
 import Header from './header';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const RegisterPupil = () => {
 
@@ -15,9 +15,11 @@ const RegisterPupil = () => {
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
     let [pupil, setPupil] = useState([])
+    let [userId, setUserId] = useState()
 
-
-
+    useEffect(()=>{
+        setUserId(auth.getUser()?.id)
+    })
 
     const handleData = (event) => {
         setData({...data, [event.target.name] : event.target.value, user_id : auth.getUser()?.id})
@@ -25,10 +27,10 @@ const RegisterPupil = () => {
 
     useEffect(() => {
         let id = auth.getUser()?.id;
-        fetch("http://127.0.0.1:8000/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("http://127.0.0.1:8000/api/pupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setPupils(pupils = result)})
-        }, [refresh]);
+        }, [userId]);
 
     useEffect(() => {
         if (pupilId != '') {

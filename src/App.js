@@ -13,8 +13,11 @@ import EditSchool from './EditSchool';
 import NewSchool from './NewSchool';
 import Customer2 from './Customer2';
 import RegisterPupil from './RegisterPupil';
+import MyPupils from './MyPupils';
+import MyOrders from './MyOrders';
 import Protected from './Protected';
 import AdminProtected from './AdminProtected';
+import UserSidebar from './UserSidebar';
 // import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
 
@@ -28,13 +31,20 @@ function App() {
             <Route path="/" element={<Customer/>} />
             <Route path='/customer' element={<Customer2/>} />
             <Route path='/addpupil' element={<Order/>} />
+            <Route path="/mypupils" element={<MyPupils />} />
+            <Route path="/myorders" element={<MyOrders />} />
             <Route path='/registerpupil/:id' element={<RegisterPupil/>} />
-              <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
-                  <Route path='editschools' default element={<Schools/>} />
-                  <Route path='editrequests' element={<Requests/>} />
-                  <Route path ='newschool' element = {<NewSchool />}/>
-                  <Route index element={<Schools/>} />
-              </Route>
+            <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
+                <Route path='editschools' default element={<Schools/>} />
+                <Route path='editrequests' element={<Requests/>} />
+                <Route path ='newschool' element = {<NewSchool />}/>
+                <Route index element={<Schools/>} />
+            </Route>
+            <Route path='/user' element={<UserSidebar />}>
+                <Route path="/user/mypupils" element={<MyPupils />} />
+                <Route path="/user/myorders" element={<MyOrders />} />
+                <Route index element={<MyPupils/>} />
+            </Route>
             <Route path ='editschool/:id' element = {<AdminProtected><EditSchool /></AdminProtected>}/>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
