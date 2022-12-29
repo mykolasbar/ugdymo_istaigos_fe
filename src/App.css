@@ -43,7 +43,7 @@
 }
 
 #schoolBox {
-  width: 47%;
+  width: 48%;
   height: 200px;
 }
 
@@ -51,13 +51,238 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  column-gap: 30px;
+  column-gap: 25px;
   row-gap: 25px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 }
 
-/* .schoolinfo:before {
-  background-color: white;
-  border:1px solid grey;
-  border-radius: 0 0 10px 10px;
-} */
+#adminrow:hover {
+  background-color:#cdd0d7;
+}
+
+#usersidebar:hover {
+  background-color:#d44646;
+  transition: background-color 0.5s;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 1,
+  'opsz' 48;
+}
+
+.burgermenu {
+  display:flex;
+  flex-direction:column;
+}
+
+.burgerlayer {
+  background-color: rgb(255, 255, 255);
+  width: 28px;
+  height:6px;
+  margin:3px;
+  border-radius:2px;
+}
+
+.burgermenuactive {
+  display:flex;
+  flex-direction:row;
+}
+
+.burgerlayeractive1 {
+  background-color: rgb(255, 255, 255);
+  width: 6px;
+  height:28px;
+  margin:1px;
+  border-radius:2px;
+  transform: matrix(0.586,0.8,-0.8,0.586,0,0);
+}
+
+.burgerlayeractive2 {
+  background-color: rgb(255, 255, 255);
+  width: 6px;
+  height:28px;
+  margin:1px;
+  border-radius:2px;
+  transform: rotate(-45deg);
+}
+
+#body {
+  width:75%;
+}
+
+#mainnav {
+  display:flex;
+  flex-direction: row;
+  background-color:black;
+  align-items:center;
+  justify-content: center;
+}
+
+#container {
+  display:flex;
+  flex-direction:row;
+  width:75%;
+  justify-content: center;
+}
+
+#headersmall {
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  align-items:center;
+  width:50%;
+}
+
+#allbuttonsnav {
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  color:white;
+}
+
+#rightmenu {
+  list-style-type: none;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+
+#leftmenu {
+  list-style-type: none;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+
+#logo {
+  width:40px; 
+  margin-right: 20px; 
+  filter: brightness(1000%);
+}
+
+#title {
+  text-decoration: none;
+  color:white;
+  width:250px;
+}
+
+#mainmenuitem {
+  padding:10px;
+  align-items:center;
+}
+
+#mainmenuitem>a {
+  text-decoration: none;
+  color:white;
+  align-items:center;
+}
+
+#burgermenu {
+  display:none;
+}
+
+@media screen and (max-width: 850px) {
+  #schoolBox {
+    width: 100%;
+    height: 200px;
+  }
+
+  #slidinggallery {
+    display:none;
+  }
+
+  #container {
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content: center;
+  }
+
+  #headersmall {
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    align-items:center;
+    width:40%;
+  }
+
+  #title {
+  text-decoration: none;
+  color:white;
+  width:240px;
+}
+
+}
+
+@media screen and (max-width: 720px) {
+  #logo {
+    width:40px; 
+    filter:brightness(1000%);
+    }
+
+  #title {
+    text-decoration: none;
+    color:white;
+    margin:10px; 
+  }  
+
+  #mainnav {
+    display:flex;
+    flex-direction:column;
+    background-color:rgb(0, 0, 0);
+  }
+
+  #container {
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    justify-content:center;
+  }
+
+  #headersmall {
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  #allbuttonsnav {
+    width:100%;
+    display:none;
+    flex-direction:column;
+    align-items:start;
+    color:white;
+  }
+  
+  #rightmenu {
+    list-style-type:none;
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+  }
+  
+  #leftmenu {
+    list-style-type:none;
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+  }
+
+  #burgermenu {
+    display:inline;
+  }
+
+  #schoolBox {
+    width:100%;
+    height:200px;
+  }
+
+  #slidinggallery {
+    display:none;
+  }
+}

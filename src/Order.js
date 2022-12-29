@@ -28,7 +28,7 @@ const Order = () => {
 
 
     let handleSubmit = (e) => {
-        let id = auth.getUser()?.id;
+        // let id = auth.getUser()?.id;
         e.preventDefault();
         fetch("http://127.0.0.1:8000/api/newpupil/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(response => response.json())

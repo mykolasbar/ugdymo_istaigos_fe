@@ -90,7 +90,7 @@ const Customer = () => {
         </div>
         <Slidinggallery images = {images}/>
                     <form onSubmit = { handleSubmit } className = "container">         
-                    <table className = "table-borderless m-2 w-75">
+                    <table className = "table-borderless w-75">
                         <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
                         <tbody>
                         <tr><td><b>Pavadinimas</b></td>

@@ -26,14 +26,14 @@ const MyOrders = () => {
 
     return (
         <>
-            {loading ? <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div> :
+            {loading ? <div style = {{height:"50vw", width: "100%", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div> :
             <table className = "p-4 w-100">
                 <thead style={{fontWeight:"bold", backgroundColor:"#e38e84"}}><td style={{padding:"12px"}}>Užsakymo ID</td><td>Mokinio vardas, pavardė</td><td>Mokinio asmens kodas</td><td>Mokinio klasė</td><td>Užsakymo statusas</td></thead>
-            { orders.map((order) => 
-                <tr className = "m-4" key = {order.id}> 
+                { orders.map((order) => 
+                <tr id = "adminrow" className = "m-4" key = {order.id}> 
                     <td style={{padding:"24px"}}>{order.id}</td> <td>{order.requests.name}</td> <td>{order.requests.idnumber}</td> <td>{order.requests.class}</td> <td>{order.confirmed ? "Patvirtinta" : "Laukiama patvirtinimo"}</td>
                 </tr>) 
-                    }
+                }
             </table>}
         </>
     );

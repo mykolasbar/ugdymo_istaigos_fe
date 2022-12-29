@@ -21,7 +21,6 @@ const EditSchool = () => {
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1])
         }
-        // console.log(JSON.stringify(data))
         fetch("http://127.0.0.1:8000/api/school/" + id + "?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
         .then(response => console.log(response))
         .then(() => {
@@ -59,7 +58,8 @@ const EditSchool = () => {
                     </div>
                     <div className="form-group m-2">
                     <input className="btn btn-dark mt-3 rounded-1" type = "submit" value = "Pridėti mokyklą"></input>
-                    </div>                </form>}
+                    </div>
+                </form>}
             </div>
         </div>
     </>

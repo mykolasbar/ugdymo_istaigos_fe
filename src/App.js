@@ -18,9 +18,13 @@ import MyOrders from './MyOrders';
 import Protected from './Protected';
 import AdminProtected from './AdminProtected';
 import UserSidebar from './UserSidebar';
+import Header from './header';
+import Notification from './Notification';
+import EditPupil from './EditPupil';
+import AccountSettings from './accountSettings';
 // import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
-
+// import { NotifProvider, NotifContext } from './NotifContext';
 
 function App() {
   return (
@@ -28,11 +32,12 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<Customer/>} />
+            <Route path="/" element={<Customer2/>} />
             <Route path='/customer' element={<Customer2/>} />
             <Route path='/addpupil' element={<Order/>} />
             <Route path="/mypupils" element={<MyPupils />} />
             <Route path="/myorders" element={<MyOrders />} />
+            <Route path="/updatepupil/:id" element={<EditPupil />} />
             <Route path='/registerpupil/:id' element={<RegisterPupil/>} />
             <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
                 <Route path='editschools' default element={<Schools/>} />
@@ -43,6 +48,7 @@ function App() {
             <Route path='/user' element={<UserSidebar />}>
                 <Route path="/user/mypupils" element={<MyPupils />} />
                 <Route path="/user/myorders" element={<MyOrders />} />
+                <Route path="/user/accountsettings" element={<AccountSettings />} />
                 <Route index element={<MyPupils/>} />
             </Route>
             <Route path ='editschool/:id' element = {<AdminProtected><EditSchool /></AdminProtected>}/>

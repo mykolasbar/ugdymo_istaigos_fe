@@ -18,9 +18,9 @@ const Slidinggallery2 = (props) => {
 
 
     return (
-        <div style={{overflow:"hidden", width: "75%", margin: "15px auto"}}>
+        <div style={{overflow:"hidden", width: "75%", margin: "15px auto"}} id="slidinggallery">
             <div style={{width: width + "%", display:"inline-flex", flexDirection:"row", flexWrap:"nowrap", whiteSpace: "no-wrap", transition:"transform 0.3s", transform: "translateX(-" + percentage + "%)"}}>
-                {props.images.map((image) => <div style = {{backgroundImage: "URL(" + image.src + ")", backgroundSize: "cover", backgroundPosition: "center", display:"inline-flex", height: "220px", width:"100%"}}></div>)}
+                {props.images.map((image) => <div key={image.id} style = {{backgroundImage: "URL(" + image.src + ")", backgroundSize: "cover", backgroundPosition: "center", display:"inline-flex", height: "220px", width:"100%"}}></div>)}
             </div>
         </div>
     );

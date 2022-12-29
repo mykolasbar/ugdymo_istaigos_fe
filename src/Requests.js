@@ -35,16 +35,16 @@ const Requests = () => {
 
     return (
         <>
-            <table className = "table-borderless m-3 w-75">
+            <table className = "table-borderless m-3">
                 <thead><tr><td>Visi prašymai <span className = "text-primary">({orders.length})</span></td></tr></thead>
                 <tbody>
                 <tr><td><b>Prašymo ID</b></td><td onClick={()=>sortByX()}><b>Mokinys</b></td><td><b>Mokykla</b></td><td><b>Statusas</b></td></tr>
-                {orders.map((order, index) => 
-                <tr key = {order.id} style = {{fontSize: "1rem", height: "110px"}} className = "m-2"> 
-                    <td className = "m-2">{order.id}</td>
-                    <td className = "m-2">{order.requests.name}</td>
-                    <td className = "m-2">{order.schools.title}</td>
-                    <td className = "m-2">{(order.confirmed == 0) ? <td><input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id)}}></input></td> : <strong>Patvirtinta</strong>}</td>    
+                {orders.map((order) => 
+                <tr id = "adminrow" key = {order.id} style = {{fontSize: "1rem", height: "110px"}} className = "m-2 p-2"> 
+                    <td className = "w-25 m-2 p-3">{order.id}</td>
+                    <td className = "w-25 m-2">{order.requests.name}</td>
+                    <td className = "w-25 m-2">{order.schools.title}</td>
+                    <td className = "w-25 m-2">{(order.confirmed == 0) ? <td><input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id)}}></input></td> : <strong>Patvirtinta</strong>}</td>    
                 </tr>)}
                 </tbody>
             </table>

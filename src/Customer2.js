@@ -5,6 +5,8 @@ import Header from './header';
 import Slidinggallery2 from './slidinggallery2';
 import Pagination from './Pagination';
 import ShowSchool from './ShowSchool';
+import RegisterPupil from './RegisterPupil';
+import Header2 from './header2';
 
 const Customer2 = () => {
     let [reversed, setReversed] = useState(false)
@@ -18,6 +20,7 @@ const Customer2 = () => {
     let [pupils, setPupils] = useState([])
     let [pupilId, setPupilId] = useState('')
     const [loading, setLoading] = useState(false)
+    const [phoneSize, setPhoneSize] = useState(false)
 
 
     let [page, setPage] = useState(1)
@@ -28,15 +31,15 @@ const Customer2 = () => {
     let indexOfLastPost = page * recordsPerPage
     let indexOfFirstPost = indexOfLastPost - recordsPerPage
     let [totalPages, setTotalPages] = useState()
-    let [test, setTest] = useState()
+    let [showRegistrationModal, setShowRegistrationModal] = useState(false)    
 
     let [showSchoolInfo, setShowSchoolInfo] = useState(false)
 
     const images = [
-        {src: "mokykla1.jpg"},
-        {src: "mokykla2.jpg"},
-        {src: "mokykla3.jpg"},
-        {src: "mokykla4.jpg"}
+        {id: 1, src: "mokykla1.jpg"},
+        {id: 2, src: "mokykla2.jpg"},
+        {id: 3, src: "mokykla3.jpg"},
+        {id: 4, src: "mokykla4.jpg"}
     ]
 
     var formData = new FormData();
@@ -53,7 +56,7 @@ const Customer2 = () => {
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
         .then(() => setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)))
-        .then(result => {setLoading(false); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost)); console.log(totalPages)})
+        .then(result => {setLoading(false); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
     }, [page]);
 
     useEffect(() => {
@@ -82,13 +85,28 @@ const Customer2 = () => {
         .then(console.log(schools))
     }
 
+    let closeModal = () => {
+        showRegistrationModal && setShowRegistrationModal(false)
+    }
+
+    let handleResize = () => {
+        console.log(window.innerWidth)
+        window.innerWidth <= 479 && setPhoneSize(true)
+        window.innerWidth >= 479 && setPhoneSize(false)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+
+
     return (
         <>
-        <Header />
-        <Slidinggallery2 images = {images}/>
+        {showRegistrationModal && <div style={{width:"100vw", height:"100vh", position:"fixed", backgroundColor:"grey", opacity:"0.6", zIndex:"1500"}}></div>}
+        <Header2 />
+        {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
 
-        <form onSubmit = { handleSubmit }>
-            <div className = "container w-75 p-2">
+        <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+            <div id = "body">
                 <div style = {{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}><div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
                     <div className="d-flex justify-content-end">
                         <div >
@@ -102,10 +120,10 @@ const Customer2 = () => {
                 <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
                     {!showSearchResults ?
                     schoolsPage.map((school, index) =>
-                        <ShowSchool title = {school.title} picture = {school.picture}>
+                        <ShowSchool title = {school.title} picture = {school.picture} key = {school.id} >
                             <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                                 <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                                <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link>
+                                <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true)}}>Užregistruoti</div>
                             </div>
                         </ShowSchool>)
                     :
@@ -113,13 +131,15 @@ const Customer2 = () => {
                     <ShowSchool title = {school.title} picture = {school.picture}>
                         <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                             <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                            <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link>
+                            <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true)}}>Užregistruoti</div>
+                            {/* <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link> */}
                         </div>
                     </ShowSchool>
                     )
                     }
                 </div>
             <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
+            {showRegistrationModal && <RegisterPupil  closeModal = {closeModal}/>}
             </div>
         </form>
         
