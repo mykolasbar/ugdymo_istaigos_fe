@@ -77,7 +77,7 @@ const RegisterPupil = (props) => {
         <>
             {/* <Header /> */}
             {showNotif && status}
-            <form onSubmit = { handleSubmit } className = "container p-4 mt-5 w-50"  style = {{padding:"30px 40px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",  borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"25%", top:"15%", zIndex:"2000"}}>
+            <form id = "pupilwindow" onSubmit = { handleSubmit } className = "container p-4 mt-5 w-50"  style = {{padding:"30px 40px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",  borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"25%", top:"15%", zIndex:"2000"}}>
                 <label><b>Pasirinkite mokinį</b></label> 
                 <select name = "requests_id" className="form-control  mb-2 mt-2" onChange={(event)=>{setPupilId(pupilId = event.target.value); console.log(pupilId)}}>
                     <option value="N/A" className="form-control" ></option>

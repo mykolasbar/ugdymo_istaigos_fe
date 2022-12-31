@@ -11,7 +11,6 @@ const UserSidebar = () => {
         <>
             <Header2 />
             {/* <Header /> */}
-            
             <div style={{display:"flex", flexDirection:"row", width:"100%"}}>
                 <div>
                     <nav className="sidebar" style = {{backgroundColor: "#c42727", height:"50vw"}}>

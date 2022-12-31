@@ -38,53 +38,54 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                     <div><Link to="/customer"><img id = "logo" src = { require("./ikona_be_fono.png") } alt="logo" /></Link></div>
                     <Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link>
                     <div onClick = {()=>{setShowMainDropdown(!showMainDropdown); console.log(showMainDropdown)}}><BurgerMenu/></div>
+                    <div id="notificationsmallscreen">
+                        <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(!viewed)}}>notifications</span>
+                        <div style = {{backgroundColor:"red", borderRadius:"50%", width:"10px", height:"10px"}}></div>
+                    </div>
+
                 </div>
                 <div id="allbuttonsnav" style = {{display: showMainDropdown && "flex"}}>
-                            <ul id="leftmenu">
-                                <li id="mainmenuitem">
-                                    <Link to="/customer">Klientams</Link>
-                                </li>
+                    <div id="leftmenu">
+                        <div>
+                            <Link to="/customer" id="mainmenuitem">Klientams</Link>
+                        </div>
                         {auth.isLoggedinAdmin() ? (
-                            <>
-                                <li id="mainmenuitem">
-                                    <Link to="/admin">Administravimas</Link>
-                                </li>
-                            </>
-                            ) : ("")}
-                            </ul>
-                        {!auth.isLoggedin() && !auth.isLoggedinAdmin() ? (
-                            <ul id="rightmenu">
-                                <li id="mainmenuitem">
-                                    <Link to="/login">Login</Link>
-                                </li>
-                                <li id="mainmenuitem">
-                                    <Link to="/register">Register</Link>
-                                </li>
-                            </ul>
-                                ) : (
-                            <ul id="rightmenu">
-                                <li id="mainmenuitem">           
-                                    <div>
-                                        <span>You are logged in as <Link to="/user" style={{textDecoration:"none", color:"white", position: "relative"}}><strong>{auth.getUser().name}</strong></Link></span>
-                                        <div ref = {buttonRef} className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{setShowAccountDropdown(!showAccountDropdown)}}>expand_more {showAccountDropdown ? <AccountDropdown /> : "" }</div>
-                                    </div>
-                                </li>
-                                <li id="mainmenuitem">
-                                    <div style = {{display:"flex", flexDirection:"row"}}>
-                                        <span className="material-symbols-outlined" style={{cursor:"pointer"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(!viewed)}}>notifications</span>
-                                        <div style = {{backgroundColor:"red", borderRadius:"50%", width:"10px", height:"10px"}}></div>
-                                    </div>
-                                </li>
-                                <li id="mainmenuitem">
-                                    <Link style={{textColor: "black"}} to="/login" onClick={() => auth.logout()}>Logout</Link>
-                                </li>
-                            </ul>
+                        <div>
+                            <Link to="/admin" id="mainmenuitem">Administravimas</Link>
+                        </div>
+                        ) : ("")}
+                    </div>
+                    {!auth.isLoggedin() && !auth.isLoggedinAdmin() ? (
+                    <div id="rightmenu">
+                        <div id="mainmenuitem">
+                            <Link to="/login">Login</Link>
+                        </div>
+                        <div id="mainmenuitem">
+                            <Link to="/register">Register</Link>
+                        </div>
+                    </div>
+                    ) : (
+                    <div id="rightmenu">
+                        <div style={{flexDirection:"column"}}>
+                            <div id="mainmenuitem"><Link  to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
+                            <span ref = {buttonRef} className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{setShowAccountDropdown(!showAccountDropdown)}}>expand_more</span></div>
+                            <div>{showAccountDropdown && <AccountDropdown />}</div>
+                        </div>
+                        <div>
+                            <div id="notificationbigscreen">
+                                <span className="material-symbols-outlined" style={{cursor:"pointer"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(!viewed)}}>notifications</span>
+                                <div style = {{backgroundColor:"red", borderRadius:"50%", width:"10px", height:"10px"}}></div>
+                            </div>
+                        </div>
+                        {/* <div id="mainmenuitem">
+                            <Link style={{textColor: "black"}} to="/login" onClick={() => auth.logout()}>Logout</Link>
+                        </div> */}
+                    </div>
                     )}
                 </div>
             </div>
         </nav>
-
-        {showNotif ? <Notification viewed = {viewed}/> : "" }
+        {showNotif && <Notification viewed = {viewed}/>}
         
         </>
     );

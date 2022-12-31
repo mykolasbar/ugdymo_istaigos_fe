@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext, useRef }  from 'react';
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
 import Header from './header';
+import Header2 from './header2';
 
 const Admin = () => {
     return (
         <>
-        <Header />
+        <Header2 />
         <nav className="navbar-expand-lg navbar-light bg-primary p-2 w-100 d-flex flex-row align-items-center" style = {{height:"80px"}}>
                 <div className="d-flex justify-content-between w-100">
                     <ul className="navbar-nav p-3">

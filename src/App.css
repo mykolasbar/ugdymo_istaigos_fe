@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -91,24 +91,6 @@
   flex-direction:row;
 }
 
-.burgerlayeractive1 {
-  background-color: rgb(255, 255, 255);
-  width: 6px;
-  height:28px;
-  margin:1px;
-  border-radius:2px;
-  transform: matrix(0.586,0.8,-0.8,0.586,0,0);
-}
-
-.burgerlayeractive2 {
-  background-color: rgb(255, 255, 255);
-  width: 6px;
-  height:28px;
-  margin:1px;
-  border-radius:2px;
-  transform: rotate(-45deg);
-}
-
 #body {
   width:75%;
 }
@@ -118,37 +100,65 @@
   flex-direction: row;
   background-color:black;
   align-items:center;
-  justify-content: center;
+  justify-content:center;
 }
 
 #container {
   display:flex;
   flex-direction:row;
   width:75%;
-  justify-content: center;
+  justify-content:center;
+  padding:0px;
 }
 
 #headersmall {
+  width:50%;
   display:flex;
   flex-direction:row;
-  justify-content: flex-end;
   align-items:center;
-  width:50%;
 }
 
 #allbuttonsnav {
-  width:100%;
+  width:50%;
   display:flex;
   flex-direction:row;
   align-items:center;
   color:white;
+  justify-content:flex-end;
 }
 
-#rightmenu {
-  list-style-type: none;
+#mainmenuitem {
+  position:"relative";
   display:flex;
   flex-direction:row;
-  align-items:center;
+  color:white;
+  text-decoration:none;
+  padding:20px;
+}
+
+#mainmenuitemwithdropdown {
+  position:"relative";
+  display:flex;
+  flex-direction:column;
+  color:white;
+  text-decoration:none;
+  height:100%;
+  padding:10px;
+}
+
+#mainmenuitem:hover {
+  color:white;
+  background-color: #282c34;
+  text-decoration:none;
+  padding:20px;
+  transition: background-color 0.5s;
+}
+
+#mainmenuitemwithdropdown:hover {
+  color:white;
+  background-color: #282c34;
+  text-decoration:none;
+  padding:10px;
 }
 
 #leftmenu {
@@ -156,6 +166,15 @@
   display:flex;
   flex-direction:row;
   align-items:center;
+  height:100%
+}
+
+#rightmenu {
+  list-style-type:none;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  height:100%
 }
 
 #logo {
@@ -170,19 +189,46 @@
   width:250px;
 }
 
-#mainmenuitem {
-  padding:10px;
-  align-items:center;
-}
-
-#mainmenuitem>a {
-  text-decoration: none;
-  color:white;
-  align-items:center;
-}
-
 #burgermenu {
   display:none;
+}
+
+#pupilwindow {
+  padding:30px 40px; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+  border-radius: 10px;
+  position: fixed;
+  background-color: white;
+  left:25%;
+  top:15%;
+  z-index:2000;
+}
+
+#notificationsmallscreen {
+  display:none;
+}
+
+#notificationbigscreen {
+  display:flex; 
+  flex-direction:row;
+}
+
+.customertop {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dropdownitem {
+  padding:10px;
+}
+
+#dropdownitem:hover {
+  background-color:#282c34;
+  padding:10px;
+  width:100%;
+  transition: background-color 0.5s;
 }
 
 @media screen and (max-width: 850px) {
@@ -199,7 +245,7 @@
     display:flex;
     flex-direction:row;
     width:100%;
-    justify-content: center;
+    justify-content:center;
   }
 
   #headersmall {
@@ -211,11 +257,18 @@
   }
 
   #title {
-  text-decoration: none;
-  color:white;
-  width:240px;
-}
+    text-decoration: none;
+    color:white;
+    width:240px;
+  }
 
+  #allbuttonsnav {
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    color:white;
+}
 }
 
 @media screen and (max-width: 720px) {
@@ -234,6 +287,7 @@
     display:flex;
     flex-direction:column;
     background-color:rgb(0, 0, 0);
+    width:100%;
   }
 
   #container {
@@ -258,19 +312,21 @@
     align-items:start;
     color:white;
   }
+
+  #leftmenu {
+    list-style-type:none;
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    width:100%;
+  }
   
   #rightmenu {
     list-style-type:none;
     display:flex;
     flex-direction:column;
     align-items:start;
-  }
-  
-  #leftmenu {
-    list-style-type:none;
-    display:flex;
-    flex-direction:column;
-    align-items:start;
+    width:100%;
   }
 
   #burgermenu {
@@ -284,5 +340,20 @@
 
   #slidinggallery {
     display:none;
+  }
+
+  #notificationsmallscreen {
+    padding:10px;
+    display:flex; 
+    flex-direction:row;
+  }
+
+  #notificationbigscreen {
+    display:none;
+  }
+
+  .customertop {
+    display:flex;
+    flex-direction:column-reverse;
   }
 }

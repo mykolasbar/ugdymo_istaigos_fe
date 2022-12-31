@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { AuthContext } from "./Auth"
 
 
 const AccountDropdown = () => {
+    let auth = useContext(AuthContext)
+
     return (
-        <ul style = {{listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "#4A4646", color: "white", padding: "10px", position: "absolute", border: "1px solid grey", zIndex: "+1000"}}>
-            <li>
-                <Link style={{textColor: "black"}} className="nav-link" to="/user/myorders">Mano užsakymai</Link>
-            </li>
-            <li>
-                <Link style={{textColor: "black"}} className="nav-link" to="/user/mypupils">Mano pridėti mokiniai</Link>
-            </li>
-        </ul>
+        <div style = {{display:"flex", justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
+            <div id = "dropdownitem" >
+                <Link className="nav-link" to="/user/myorders">Mano užsakymai</Link>
+            </div>
+            <div id = "dropdownitem">
+                <Link className="nav-link" to="/user/mypupils">Mano pridėti mokiniai</Link>
+            </div>
+            <div id = "dropdownitem">
+                <Link to="/login" onClick={() => auth.logout()} style={{textDecoration:"none", color:"white"}}>Atsijungti</Link>
+            </div>
+        </div>
     );
 };
 

@@ -107,7 +107,8 @@ const Customer2 = () => {
 
         <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
             <div id = "body">
-                <div style = {{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}><div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
+                <div className="customertop">
+                    <div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
                     <div className="d-flex justify-content-end">
                         <div >
                         <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
