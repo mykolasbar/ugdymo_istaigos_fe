@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./Auth"
 
 
-const AccountDropdown = () => {
+const AccountDropdown = (props) => {
     let auth = useContext(AuthContext)
 
     return (
-        <div style = {{display:"flex", justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
+        <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
             <div id = "dropdownitem" >
                 <Link className="nav-link" to="/user/myorders">Mano užsakymai</Link>
             </div>

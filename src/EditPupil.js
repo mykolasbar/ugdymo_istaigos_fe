@@ -28,6 +28,7 @@ const EditPupil = (props) => {
         .then((response) => {if (response.message ==  "Mokinys pridėtas sėkmingai") {setStatus(status = "Mokinys atnaujintas sėkmingai"); setShowNotif(!showNotif); console.log(status)}; if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra"); setShowNotif(!showNotif); console.log(status)}})
         // .then((response) => {if (status == "Mokinys pridėtas sėkmingai") {setTimeout(() => navigate("/user"), 4000)}})
         .then(()=>setDeleteSuccess(true))
+        .then(()=>props.enableScroll())
         .then(()=>{props.refreshing()})
 
     }
@@ -48,7 +49,7 @@ const EditPupil = (props) => {
         
     return (
         <>
-            <form onSubmit = { handleSubmit } className = "container p-4 mt-5 w-50" style = {{border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"25%", top:"20%", zIndex:"5000"}}>
+            <form onSubmit = { handleSubmit } className = "container p-4 mt-5" id = "pupilwindow">
                 <span style = {{display: showNotif ? "block" : "none", position: "absolute"}}>{status}</span>
                 <span className = "card border-0 mt-4"><h3>Atnaujinti mokinio duomenis</h3></span>
                 <div className="form-group mt-2">
@@ -61,7 +62,7 @@ const EditPupil = (props) => {
                     <input className="form-control h-75" type = "text" defaultValue = {props.pupilData.class} name = "class" onChange={handleData}  placeholder = "Klasė"></input>
                 </div>
                 <input type = "submit" value = "Pridėti" className="btn btn-dark btn-sm m-2" style={{width:"100px"}}></input>
-                <input value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal()}} style={{width:"100px"}}></input>
+                <input value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal(); props.enableScroll()}} style={{width:"100px"}}></input>
             </form>
         </>
     );

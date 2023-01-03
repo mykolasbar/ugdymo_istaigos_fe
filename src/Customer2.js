@@ -21,6 +21,7 @@ const Customer2 = () => {
     let [pupilId, setPupilId] = useState('')
     const [loading, setLoading] = useState(false)
     const [phoneSize, setPhoneSize] = useState(false)
+    let [schoolId, setSchoolId] = useState()
 
 
     let [page, setPage] = useState(1)
@@ -97,6 +98,13 @@ const Customer2 = () => {
 
     window.addEventListener('resize', handleResize)
 
+    let disableScroll = () => {
+        document.body.classList.add("stop-scrolling");
+    }
+    
+    let enableScroll = () => {
+        document.body.classList.remove("stop-scrolling");
+    }
 
 
     return (
@@ -124,7 +132,7 @@ const Customer2 = () => {
                         <ShowSchool title = {school.title} picture = {school.picture} key = {school.id} >
                             <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                                 <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                                <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true)}}>Užregistruoti</div>
+                                <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
                             </div>
                         </ShowSchool>)
                     :
@@ -132,15 +140,14 @@ const Customer2 = () => {
                     <ShowSchool title = {school.title} picture = {school.picture}>
                         <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                             <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                            <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true)}}>Užregistruoti</div>
-                            {/* <Link to={'/registerpupil/' + school.id} style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2">Užregistruoti</Link> */}
+                            <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
                         </div>
                     </ShowSchool>
                     )
                     }
                 </div>
             <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
-            {showRegistrationModal && <RegisterPupil  closeModal = {closeModal}/>}
+            {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
             </div>
         </form>
         

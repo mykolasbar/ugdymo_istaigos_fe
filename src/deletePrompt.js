@@ -11,6 +11,7 @@ const DeletePrompt = (props) => {
         console.log(id)
         fetch("http://127.0.0.1:8000/api/deletepupil/" + props.deletionId, {method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(()=>setDeleteSuccess(true))
+        .then(()=>props.enableScroll())
         .then(()=>{props.refreshing()})
     }
 
@@ -19,6 +20,7 @@ const DeletePrompt = (props) => {
         return () => clearTimeout(timer);
       }, [deleteSuccess]);
 
+
     return (
         <>
         {deleteSuccess ? <div  style = {{padding:"30px 40px", border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"40%", top:"30%"}}>Mokinys ištrintas iš sistemos</div> :
@@ -26,7 +28,7 @@ const DeletePrompt = (props) => {
             <div>Ar tikrai norite ištrinti mokinį?</div>
             <div style={{display:"flex", flexDirection:"row"}}>
                 <input className="btn btn-dark btn-sm m-2 rounded-0" style={{width:"100px"}} onClick = {() => {handleDelete()}} value = "Trinti mokinį"></input>
-                <input className="btn btn-danger btn-sm m-2 rounded-0" style={{width:"100px"}} onClick={()=>{props.closeModal()}} value = "Atšaukti"></input>
+                <input className="btn btn-danger btn-sm m-2 rounded-0" style={{width:"100px"}} onClick={()=>{props.closeModal(); props.enableScroll()}} value = "Atšaukti"></input>
             </div>
         </div>}
         </>

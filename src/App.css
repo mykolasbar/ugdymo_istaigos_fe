@@ -65,6 +65,11 @@
   transition: background-color 0.5s;
 }
 
+#usersidebar:active {
+  background-color:#d44646;
+  transition: background-color 0.5s;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -152,6 +157,7 @@
   text-decoration:none;
   padding:20px;
   transition: background-color 0.5s;
+  /* transition: background-color 0.5s; */
 }
 
 #mainmenuitemwithdropdown:hover {
@@ -202,6 +208,7 @@
   left:25%;
   top:15%;
   z-index:2000;
+  width:50vw;
 }
 
 #notificationsmallscreen {
@@ -229,6 +236,11 @@
   padding:10px;
   width:100%;
   transition: background-color 0.5s;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 850px) {
@@ -269,6 +281,13 @@
     align-items:center;
     color:white;
 }
+
+#pupilwindow {
+  left:12%;
+  top:15%;
+  width:75vw;
+}
+
 }
 
 @media screen and (max-width: 720px) {
@@ -356,4 +375,11 @@
     display:flex;
     flex-direction:column-reverse;
   }
+
+  #pupilwindow {
+    left:4%;
+    top:15%;
+    width:90vw;
+  }
+  
 }

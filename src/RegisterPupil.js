@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const RegisterPupil = (props) => {
 
-    let navigate = useNavigate('')
+    let navigate = useNavigate()
     let [refresh, setRefresh] = useState(false)
     let [schools, setSchools] = useState([])
     let auth = useContext(AuthContext)
@@ -16,12 +16,11 @@ const RegisterPupil = (props) => {
     let [pupilId, setPupilId] = useState('')
     let [pupil, setPupil] = useState([])
     let [userId, setUserId] = useState()
-    let { id } = useParams();
 
 
     useEffect(()=>{
         setUserId(auth.getUser()?.id)
-        console.log(id)
+        console.log(props.schoolId)
     })
 
     const handleData = (event) => {
@@ -46,22 +45,18 @@ const RegisterPupil = (props) => {
     let handleSubmit = (e) => {
         e.preventDefault();
         pupilId !== '' ? 
-            fetch("http://127.0.0.1:8000/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : id})})
+            fetch("http://127.0.0.1:8000/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
             .then(()=>{setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)})
+            .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll(); navigate('/customer')}, 4000)}})
             :
             fetch("http://127.0.0.1:8000/api/newpupil/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
             .then(response => response.json())
-            // .then(response => console.log(response.message))
             .then(response => {if (response.message ==  "Mokinys pridėtas sėkmingai") {
-                fetch("http://127.0.0.1:8000/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : id})})
+                fetch("http://127.0.0.1:8000/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
                 setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)}
                 if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra")}
             })
-
-        // .then((response) => {if (response.message ==  "Mokinys pridėtas sėkmingai") {setStatus(status = "Mokinys pridėtas sėkmingai"); setShowNotif(!showNotif); if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra"); setShowNotif(!showNotif); console.log(status)}})
-            .then((response) => {if (status == "Mokinys pridėtas sėkmingai") {
-            setTimeout(() => props.closeModal(), 4000)
-            }})
+            .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll()}, 4000)}})
         }
 
     useEffect(() => {
@@ -75,9 +70,8 @@ const RegisterPupil = (props) => {
         
     return (
         <>
-            {/* <Header /> */}
-            {showNotif && status}
-            <form id = "pupilwindow" onSubmit = { handleSubmit } className = "container p-4 mt-5 w-50"  style = {{padding:"30px 40px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",  borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"25%", top:"15%", zIndex:"2000"}}>
+            <form id = "pupilwindow" className = "container p-4 mt-5">
+            {showNotif && status}<br/>
                 <label><b>Pasirinkite mokinį</b></label> 
                 <select name = "requests_id" className="form-control  mb-2 mt-2" onChange={(event)=>{setPupilId(pupilId = event.target.value); console.log(pupilId)}}>
                     <option value="N/A" className="form-control" ></option>
@@ -102,8 +96,8 @@ const RegisterPupil = (props) => {
                     <label>Klasė</label>
                     <input className="form-control h-75" type = "text" name = "class" onChange={handleData}  placeholder = "Klasė" defaultValue = { pupilId != '' ? pupil.class : "" }></input>
                 </div>
-                    <input type = "submit" value = "Pridėti" className="btn btn-dark btn-sm m-2"></input>
-                    <input type = "submit" value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal()}}></input>
+                    <input type = "submit" value = "Pridėti" className="btn btn-dark btn-sm m-2" onClick = {handleSubmit}></input>
+                    <input type = "submit" value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal(); props.enableScroll()}}></input>
             </form>
         </>
     );
