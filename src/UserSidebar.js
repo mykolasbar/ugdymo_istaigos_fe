@@ -1,11 +1,17 @@
-import React, { useContext, useState }  from 'react';
-import { Link, Outlet } from "react-router-dom";
+import React, { useContext, useState, useNavigate, useEffect }  from 'react';
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "./Auth"
 import Header2 from './header2';
 
 const UserSidebar = () => {
+    let location = useLocation()
+    const tab = location.state
+
     let auth = useContext(AuthContext)
+
     let [activeTab, setActiveTab] = useState('tab1')
+
+    useEffect(()=>{tab !== null && setActiveTab(activeTab = tab)}, [tab])
 
     return (
         <>
@@ -32,6 +38,7 @@ const UserSidebar = () => {
                         </div>
                     </nav>
                 </div>
+                {console.log(activeTab)}
                 <Outlet />
             </div>
         </>
