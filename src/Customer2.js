@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef, useCallback }  from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
-import Header from './header';
 import Slidinggallery2 from './slidinggallery2';
 import Pagination from './Pagination';
 import ShowSchool from './ShowSchool';

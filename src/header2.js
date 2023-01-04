@@ -9,23 +9,14 @@ import AccountDropdown from './AccountDropdown';
 
 const Header2 = () => {
 let auth = useContext(AuthContext)
+let notif = useContext(NotifContext)
+
 let [showNotif, setShowNotif] = useState(false)
 let [showAccountDropdown, setShowAccountDropdown] = useState(false)
 let [viewed, setViewed] = useState(false)
 let [showMainDropdown, setShowMainDropdown] = useState(false)
-// const [phoneSize, setPhoneSize] = useState(false)
 const buttonRef = useRef()
 const dropdownRef = useRef()
-
-
-// let handleResize = () => {
-//     console.log(window.innerWidth)
-//     window.innerWidth <= 700 && setPhoneSize(true)
-//     window.innerWidth >= 700 && setPhoneSize(false)
-// }
-
-// window.addEventListener('resize', handleResize)
-
 
 
 window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && showAccountDropdown === true) setShowAccountDropdown(false); else if(e.target != dropdownRef.current && showNotif === true){setShowNotif(false)}})
@@ -39,10 +30,9 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                     <Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link>
                     <div onClick = {()=>{setShowMainDropdown(!showMainDropdown); console.log(showMainDropdown)}}><BurgerMenu/></div>
                     <div id="notificationsmallscreen">
-                        <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(!viewed)}}>notifications</span>
+                        <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif)}}>notifications</span>
                         <div style = {{backgroundColor:"red", borderRadius:"50%", width:"10px", height:"10px"}}></div>
                     </div>
-
                 </div>
                 <div id="allbuttonsnav" style = {{display: showMainDropdown && "flex"}}>
                     <div id="leftmenu">
@@ -69,14 +59,14 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                         <div style={{flexDirection:"column"}}>
                             <div id="mainmenuitem"><Link  to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
                             <span ref = {buttonRef} className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{setShowAccountDropdown(!showAccountDropdown)}}>expand_more</span></div>
-                            {/* <div>{showAccountDropdown && <AccountDropdown />}</div> */}
                             <div style = {{display: showAccountDropdown ? "block" : "none"}} id = "dropdownContainer">{<AccountDropdown/>}</div>
                         </div>
-                        <div>
+                        <div style={{flexDirection:"column"}}>
                             <div id="notificationbigscreen">
-                                <span className="material-symbols-outlined" style={{cursor:"pointer"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(!viewed)}}>notifications</span>
+                                <span className="material-symbols-outlined" style={{cursor:"pointer"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setViewed(true)}}>notifications</span>
                                 <div style = {{backgroundColor:"red", borderRadius:"50%", width:"10px", height:"10px"}}></div>
                             </div>
+                            <div style = {{display: showNotif ? "block" : "none"}} id = "dropdownContainer">{<Notification viewed = {viewed}/>}</div>
                         </div>
                         {/* <div id="mainmenuitem">
                             <Link style={{textColor: "black"}} to="/login" onClick={() => auth.logout()}>Logout</Link>
@@ -86,8 +76,6 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                 </div>
             </div>
         </nav>
-        {showNotif && <Notification viewed = {viewed}/>}
-        
         </>
     );
 };

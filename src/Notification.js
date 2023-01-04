@@ -1,24 +1,26 @@
 import React, { useState, useEffect, useContext }  from 'react';
 import { AuthContext, AuthProvider } from "./Auth"
-import Header from './header';
+import { NotifProvider, NotifContext } from './NotifContext';
 
 const Notifications = (props) => {
     let auth = useContext(AuthContext)
+    let notif = useContext(NotifContext)
     let [notificationArray, setNotificationArray] = useState([])
     let [userId, setUserId] = useState()
 
 
-    useEffect(()=>{
-        setUserId(auth.getUser()?.id)
-    })
+    // useEffect(()=>{
+    //     setUserId(auth.getUser()?.id)
+    //     console.log(userId)
+    // }, [auth.getUser()?.id])
 
     useEffect(() => {
-        // let id = auth.getUser()?.id;
-        fetch("http://127.0.0.1:8000/api/userorders/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
-        .then(response => response.json())
-        .then((results) => {setNotificationArray(notificationArray = results)})
+        console.log(auth.getUser()?.id)
+        fetch("http://127.0.0.1:8000/api/userorders/" + auth.getUser()?.id, {method: 'GET'})
+        .then(response => {return response.json()})
+        .then(response => {setNotificationArray(notificationArray = response)})
         .then(() => {console.log(notificationArray)})
-        }, [userId]);
+        }, [notif.getNotifsArray()]);
 
     useEffect(() => {
         if (props.viewed === true)
@@ -28,12 +30,18 @@ const Notifications = (props) => {
 
     return (
         <>
-            { notificationArray.map((order) => 
-                <div key = {order.id} style = {{backgroundColor: "#4A4646", color: "white", padding: "5px", zIndex: "+1100", position:"absolute"}}> 
-                    {order.confirmed && !order.viewed ? "Patvirtintas jūsų prašymas mokyklai: " + order.schools.title : "Naujų pranešimų nėra"}
-                    {/* Patvirtintas jūsų prašymas mokyklai: " { order.schools.title } */}
-                </div>) 
-            }
+            {notif.getNotifsArray().length === 0 ? 
+            <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
+                <div id = "dropdownitem">Naujų pranešimų nėra</div> 
+            </div>    
+                :
+            <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
+                { notif.getNotifsArray().map((order) => 
+                    <div key = {order.id} id = "dropdownitem" > 
+                        Patvirtinta jūsų registracija į mokyklą: {order}
+                    </div>) 
+                }
+            </div>}
         </>
     );
 };

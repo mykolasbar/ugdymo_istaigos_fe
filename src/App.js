@@ -24,13 +24,14 @@ import EditPupil from './EditPupil';
 import AccountSettings from './accountSettings';
 // import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
-// import { NotifProvider, NotifContext } from './NotifContext';
+import { NotifProvider, NotifContext } from './NotifContext';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <AuthProvider>
+          <NotifProvider>
           <Routes>
             <Route path="/" element={<Customer2/>} />
             <Route path='/customer' element={<Customer2/>} />
@@ -55,6 +56,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Routes>
+          </NotifProvider>
         </AuthProvider>
       </BrowserRouter>
 

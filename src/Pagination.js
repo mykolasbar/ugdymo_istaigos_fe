@@ -21,14 +21,14 @@ const Pagination = (props) => {
                 <li className="page-item">
                     <a className="page-link" tabIndex="-1" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page - 1)}}>Ankstesnis</a>
                 </li>}
-                {pageNumbers.map((pageNumber)=><li className="page-item" key = {pageNumber}><a a href = "#" className="page-link" onClick={() => {props.setCurrentPage(pageNumber); console.log(pageNumber)}}>{pageNumber}</a></li>)}
+                {pageNumbers.map((pageNumber)=><li className="page-item" key = {pageNumber}><a a style={{cursor:"pointer"}} className="page-link" onClick={() => {props.setCurrentPage(pageNumber); console.log(pageNumber)}}>{pageNumber}</a></li>)}
                 {props.page == props.totalPages ?
                 <li className="page-item disabled">
                     <a className="page-link">Sekantis</a>
                 </li> :
                 <li className="page-item">
-                <a className="page-link" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
-            </li>}
+                    <a className="page-link" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
+                </li>}
             </ul>
         </>
     );

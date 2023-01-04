@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef, useCallback }  from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Auth"
+import { NotifProvider, NotifContext } from './NotifContext';
 
 const Requests = () => {
 
@@ -8,6 +9,7 @@ const Requests = () => {
     let [data, setData] = useState({})
     let [refresh, setRefresh] = useState(false)
     let auth = useContext(AuthContext)
+    let notif = useContext(NotifContext)
     let [reversed, setReversed] = useState(false)
     let [orderId, setOrderId] = useState('')
 
@@ -18,13 +20,14 @@ const Requests = () => {
         .then((result) => {setOrders(orders = result); console.log(orders)})
     }, [refresh]);
 
-    let confirmReservation = (orderId, event) => {
+    let confirmReservation = (orderId, schoolTitle) => {
         // event.preventDefault()
         fetch("http://127.0.0.1:8000/api/confirmrequest/" + orderId, {method: 'PUT'})
         // .then(console.log(JSON.stringify(data)))
         .then(() => {
-        setData({})
-        setRefresh(!refresh)})
+            notif.setNotifications(schoolTitle)
+            setData({})
+            setRefresh(!refresh)})
     }
 
     let sortByX = () => {
@@ -44,7 +47,7 @@ const Requests = () => {
                     <td className = "w-25 m-2 p-3">{order.id}</td>
                     <td className = "w-25 m-2">{order.requests.name}</td>
                     <td className = "w-25 m-2">{order.schools.title}</td>
-                    <td className = "w-25 m-2">{(order.confirmed == 0) ? <td><input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id)}}></input></td> : <strong>Patvirtinta</strong>}</td>    
+                    <td className = "w-25 m-2">{(order.confirmed == 0) ? <td><input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id, order.schools.title)}}></input></td> : <strong>Patvirtinta</strong>}</td>    
                 </tr>)}
                 </tbody>
             </table>
