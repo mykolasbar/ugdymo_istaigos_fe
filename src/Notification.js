@@ -9,23 +9,11 @@ const Notifications = (props) => {
     let [userId, setUserId] = useState()
 
 
-    // useEffect(()=>{
-    //     setUserId(auth.getUser()?.id)
-    //     console.log(userId)
-    // }, [auth.getUser()?.id])
-
     useEffect(() => {
-        console.log(auth.getUser()?.id)
-        fetch("http://127.0.0.1:8000/api/userorders/" + auth.getUser()?.id, {method: 'GET'})
-        .then(response => {return response.json()})
-        .then(response => {setNotificationArray(notificationArray = response)})
-        .then(() => {console.log(notificationArray)})
-        }, [notif.getNotifsArray()]);
-
-    useEffect(() => {
-        if (props.viewed === true)
-        fetch("http://127.0.0.1:8000/api/makeviewed/", {method: 'PUT'})
-    }, [props.viewed]);
+        if (props.resetNotifs == 2)
+        fetch("http://127.0.0.1:8000/api/makeviewed/" + auth.getUser()?.id, {method: 'PUT'})
+        .then(()=>notif.setNotifications())
+    }, [props.resetNotifs]);
 
 
     return (
@@ -38,10 +26,11 @@ const Notifications = (props) => {
             <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000"}}>
                 { notif.getNotifsArray().map((order) => 
                     <div key = {order.id} id = "dropdownitem" > 
-                        Patvirtinta jūsų registracija į mokyklą: {order}
+                        Patvirtinta jūsų registracija į mokyklą: <b>{order.schools.title}</b>
                     </div>) 
                 }
-            </div>}
+            </div>
+            }
         </>
     );
 };

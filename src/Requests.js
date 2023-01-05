@@ -20,12 +20,12 @@ const Requests = () => {
         .then((result) => {setOrders(orders = result); console.log(orders)})
     }, [refresh]);
 
-    let confirmReservation = (orderId, schoolTitle) => {
+    let confirmReservation = (orderId) => {
         // event.preventDefault()
         fetch("http://127.0.0.1:8000/api/confirmrequest/" + orderId, {method: 'PUT'})
-        // .then(console.log(JSON.stringify(data)))
         .then(() => {
-            notif.setNotifications(schoolTitle)
+            notif.setNotifications()
+            notif.newRequests()
             setData({})
             setRefresh(!refresh)})
     }
@@ -41,14 +41,15 @@ const Requests = () => {
             <table className = "table-borderless m-3">
                 <thead><tr><td>Visi prašymai <span className = "text-primary">({orders.length})</span></td></tr></thead>
                 <tbody>
-                <tr><td><b>Prašymo ID</b></td><td onClick={()=>sortByX()}><b>Mokinys</b></td><td><b>Mokykla</b></td><td><b>Statusas</b></td></tr>
-                {orders.map((order) => 
-                <tr id = "adminrow" key = {order.id} style = {{fontSize: "1rem", height: "110px"}} className = "m-2 p-2"> 
-                    <td className = "w-25 m-2 p-3">{order.id}</td>
-                    <td className = "w-25 m-2">{order.requests.name}</td>
-                    <td className = "w-25 m-2">{order.schools.title}</td>
-                    <td className = "w-25 m-2">{(order.confirmed == 0) ? <td><input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id, order.schools.title)}}></input></td> : <strong>Patvirtinta</strong>}</td>    
-                </tr>)}
+                    <tr><td><b>Prašymo ID</b></td><td onClick={()=>sortByX()}><b>Mokinys</b></td><td><b>Mokykla</b></td><td><b>Statusas</b></td></tr>
+                    {orders.map((order) => 
+                    <tr id = "adminrow" key = {order.id} style = {{fontSize: "1rem", height: "60px"}} className = "m-2"> 
+                        <td className = "w-25 p-2">{order.id}</td>
+                        <td className = "w-25 p-2">{order.requests.name}</td>
+                        <td className = "w-25 p-2">{order.schools.title}</td>
+                        <td className = "w-25 p-2">{(order.confirmed == 0) ? <input name = {order.id} type = "submit" value = "Patvirtinti užsakymą" className="btn btn-dark btn-sm m-2" onClick={(event) => {confirmReservation(order.id, order.schools.title)}}></input> : <strong>Patvirtinta</strong>}</td>    
+                    </tr>)}
+                    <tr></tr>
                 </tbody>
             </table>
         </>
