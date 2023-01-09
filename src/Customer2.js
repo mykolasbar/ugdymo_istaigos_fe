@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 import ShowSchool from './ShowSchool';
 import RegisterPupil from './RegisterPupil';
 import Header2 from './header2';
+import Footer from './footer';
 
 const Customer2 = () => {
     let [reversed, setReversed] = useState(false)
@@ -55,8 +56,8 @@ const Customer2 = () => {
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
-        .then(() => setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)))
-        .then(result => {setLoading(false); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
+        .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
+        .then(result => {setLoading(false)})
     }, [page]);
 
     useEffect(() => {
@@ -107,50 +108,51 @@ const Customer2 = () => {
 
 
     return (
-        <>
-        {showRegistrationModal && <div style={{width:"100vw", height:"100vh", position:"fixed", backgroundColor:"grey", opacity:"0.6", zIndex:"1500"}}></div>}
-        <Header2 />
-        {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
-
-        <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-            <div id = "body">
-                <div className="customertop">
-                    <div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
-                    <div className="d-flex justify-content-end">
-                        <div >
-                        <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
-                        <input type="search" id="site-search" name="query" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
-                        <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
-                    </div>
-                </div>
-                </div>
-                {loading && <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>}
-                <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
-                    {!showSearchResults ?
-                    schoolsPage.map((school, index) =>
-                        <ShowSchool title = {school.title} picture = {school.picture} key = {school.id} >
-                            <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
-                                <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                                <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
+        <div style = {{display:"flex", flexDirection:"column", minHeight:"100vh", justifyContent:"space-between"}}>
+            {showRegistrationModal && <div style={{width:"100vw", height:"100vh", position:"fixed", backgroundColor:"grey", opacity:"0.6", zIndex:"1500"}}></div>}
+            <div>
+                <Header2 />
+                {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
+                <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <div id = "body">
+                        <div className="customertop">
+                            <div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
+                            <div className="d-flex justify-content-end">
+                                <div>
+                                    <label className = "m-3" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
+                                    <input type="search" id="site-search" name="query" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
+                                    <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
+                                </div>
                             </div>
-                        </ShowSchool>)
-                    :
-                    schools.map((school, index) =>
-                    <ShowSchool title = {school.title} picture = {school.picture}>
-                        <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
-                            <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                            <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
                         </div>
-                    </ShowSchool>
-                    )
-                    }
-                </div>
-            <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
-            {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
+                        {loading && <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>}
+                        <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
+                            {!showSearchResults ?
+                            schoolsPage.map((school, index) =>
+                                <ShowSchool title = {school.title} picture = {school.picture} key = {school.id} >
+                                    <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
+                                        <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
+                                        <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
+                                    </div>
+                                </ShowSchool>)
+                            :
+                            schools.map((school, index) =>
+                            <ShowSchool title = {school.title} picture = {school.picture}>
+                                <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
+                                    <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
+                                    <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
+                                </div>
+                            </ShowSchool>
+                            )
+                            }
+                        </div>
+                    <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
+                    {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
+                    </div>
+                </form>
             </div>
-        </form>
-        
-        </>
+            <Footer />
+        </div>
     );
 };
 

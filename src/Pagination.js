@@ -12,7 +12,7 @@ const Pagination = (props) => {
         
 
     return (
-        <>
+        <div id = "paginationcontainer">
             <ul className="pagination">
                 {props.page == 1 ?
                 <li className="page-item disabled">
@@ -30,7 +30,7 @@ const Pagination = (props) => {
                     <a className="page-link" style={{cursor:"pointer"}} onClick={() => {props.setCurrentPage(props.page + 1)}}>Sekantis</a>
                 </li>}
             </ul>
-        </>
+        </div>
     );
 };
 

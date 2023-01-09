@@ -14,6 +14,7 @@ const EditSchool = () => {
     let auth = useContext(AuthContext)
 
 
+
     var formData = new FormData();
 
     let handleSubmit = (event) => {

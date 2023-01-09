@@ -70,7 +70,7 @@ const Schools = () => {
                         <td name = "nuotrauka" ><b>Adresas</b></td>
                     </tr>
                     {schoolsPage.map((school, index) => 
-                    <tr id = "adminrow" key = {school.id} style = {{fontSize: "1rem", height: "110px"}}> 
+                    <tr id = "adminrow" key = {school.id} style = {{fontSize: "1rem", height: "60px"}}> 
                         <td className = "w-20 m-2 p-3">{school.title}</td>
                         <td className = "w-20 m-2">{school.code}</td>
                         <td className = "w-20 m-2">{school.address}</td>

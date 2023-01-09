@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext }  from 'react';
 import { AuthContext } from "./Auth"
 import Header from './header';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPupil = (props) => {
 

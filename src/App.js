@@ -25,6 +25,7 @@ import AccountSettings from './accountSettings';
 // import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
 import { NotifProvider, NotifContext } from './NotifContext';
+import Footer from './footer';
 
 function App() {
   return (
