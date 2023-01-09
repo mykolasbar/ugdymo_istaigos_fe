@@ -6,6 +6,7 @@ const AccountSettings = () => {
 
     return (
         <table style = {{margin:"20px", height: "180px"}}>
+            <tbody>
                 <tr>
                     <td style = {{padding:"10px"}}>Naudotojo vardas: </td><td style = {{padding:"10px"}}><b>{auth.getUser()?.name}</b></td>
                 </tr>
@@ -19,6 +20,7 @@ const AccountSettings = () => {
                 <tr>
                     <td style = {{padding:"10px"}}>Paskyros trynimas: </td><td style = {{padding:"10px"}}><input type="button" value="Trinti paskyrą"></input></td>
                 </tr>
+            </tbody>
         </table>
     );
 };

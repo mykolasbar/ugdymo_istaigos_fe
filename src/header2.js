@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./Auth"
 import { NotifProvider, NotifContext } from './NotifContext';
 import BurgerMenu from './BurgerMenu';
+import CookiesPropt from './cookiesPropt';
 
 import Notification from './Notification';
 import AccountDropdown from './AccountDropdown';
@@ -15,11 +16,18 @@ let [showNotif, setShowNotif] = useState(false)
 let [showAccountDropdown, setShowAccountDropdown] = useState(false)
 let [viewed, setViewed] = useState(false)
 let [showMainDropdown, setShowMainDropdown] = useState(false)
+let [showCookiesPrompt, setShowCookiesPrompt] = useState(false)
 let [resetNotifs, setResetNotifs] = useState(0)
 const buttonRef = useRef()
 const dropdownRef = useRef()
 
 useEffect(()=>{notif.setNotifications()}, [auth.getUser()?.name])
+
+useEffect(()=>{let timer = setTimeout(() => {
+    setShowCookiesPrompt(true)
+}, 4000)
+return () => clearTimeout(timer)
+}, [])
 
 
 window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && showAccountDropdown === true) setShowAccountDropdown(false); else if(e.target != dropdownRef.current && showNotif === true){setShowNotif(false)}})
@@ -77,6 +85,7 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                 </div>
             </div>
         </nav>
+        {showCookiesPrompt && <CookiesPropt />}
         </>
     );
 };

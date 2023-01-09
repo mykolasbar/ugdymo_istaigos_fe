@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useContext, useState, useEffect }  from 'react';
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 import Customer from './Customer';
 import Schools from './Schools';
 import Requests from './Requests';
@@ -30,6 +31,7 @@ import Footer from './footer';
 function App() {
   return (
     <>
+    <CookiesProvider>
       <BrowserRouter>
         <AuthProvider>
           <NotifProvider>
@@ -60,7 +62,7 @@ function App() {
           </NotifProvider>
         </AuthProvider>
       </BrowserRouter>
-
+    </CookiesProvider>
     </>
   );
 }

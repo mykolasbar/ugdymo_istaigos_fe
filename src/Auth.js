@@ -7,7 +7,7 @@ export let AuthProvider = ({children}) => {
     let [user, setUser] = useState(null)
     let [admin, setAdmin] = useState(null)
     let [role, setRole] = useState(null)
-    let [userId, setUserId] =  useState(null)
+    let [userId, setUserId] = useState(null)
 
     let [token, setToken] = useState(null)
     let navigate = useNavigate
@@ -19,7 +19,6 @@ export let AuthProvider = ({children}) => {
             setRole(role = user.role)
             setUserId(userId = user.id)
             console.log(userId)
-            // console.log(user.id)
         }
     }, []);
 

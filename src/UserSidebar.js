@@ -9,7 +9,7 @@ const UserSidebar = () => {
     let auth = useContext(AuthContext)
     let [activeTab, setActiveTab] = useState('tab1')
 
-    useEffect(()=>{console.log(location); tab !== null && setActiveTab(activeTab = tab)}, [tab])
+    useEffect(()=>{console.log(location); location.pathname == '/user/accountsettings' && setActiveTab(activeTab = 'tab3'); tab !== null && setActiveTab(activeTab = tab)}, [tab])
 
     return (
         <>

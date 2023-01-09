@@ -216,6 +216,31 @@
   width:50vw;
 }
 
+@keyframes cookiesPrompt {
+    from {top:-20%;}
+    to {top:40%;}
+  }
+
+#cookiesPromptWindow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+  border-radius: 10px;
+  position: fixed;
+  background-color: white;
+  left:25%;
+  z-index:2000;
+  width:50vw;
+  top:40%; 
+  background-color:rgb(242, 97, 75, 0.95);
+  animation-name: cookiesPrompt;
+  animation-duration: 2s;
+}
+
+#cookiesPromptWindow:hover {
+  background-color:rgb(242, 97, 75);
+  transition-timing-function: ease-in-out;
+  transition: background-color 0.5s;
+}
+
 #notificationsmallscreen {
   display:none;
 }
@@ -252,12 +277,12 @@
   display:flex; 
   flex-direction:row;
   width:100%;
+  min-height:100vh; 
+  height:100%
 }
 
 #sidebar {
   background-color: #c42727; 
-  min-height:100vh; 
-  height:100%
 }
 
 #sidebarlist {
@@ -375,6 +400,11 @@
 
   #body {
     width:85%;
+  }
+
+  #cookiesPromptWindow {
+    width:90vw;
+    left:5%;
   }
 }
 
@@ -499,6 +529,10 @@
   #paginationcontainer {
     display:flex;
     align-items:flex-start
+  }
+  #cookiesPromptWindow {
+    width:90vw;
+    left:3%;
   }
   
 }
