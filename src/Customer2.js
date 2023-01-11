@@ -52,7 +52,7 @@ const Customer2 = () => {
 
     useEffect(() => {
         setLoading(true)
-        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
+        let url = "http://127.0.0.1:8000/api/schools/";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then((response) => {if (response.ok) return response.json(); else throw Error("Serverio klaida")})
@@ -62,12 +62,12 @@ const Customer2 = () => {
         .catch((err) => {console.log(err.message); setError(err.message)})
     }, [page]);
 
-    useEffect(() => {
-        let id = auth.getUser()?.id;
-        fetch("http://127.0.0.1:8000/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
-        .then(response => response.json())
-        .then((result) => {setPupils(pupils = result)})
-        }, [refresh]);
+    // useEffect(() => {
+    //     let id = auth.getUser()?.id;
+    //     fetch("http://127.0.0.1:8000/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+    //     .then(response => response.json())
+    //     .then((result) => {setPupils(pupils = result)})
+    //     }, [refresh]);
 
     let handleSubmit = (event) => {
         event.preventDefault()
