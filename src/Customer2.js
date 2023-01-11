@@ -52,10 +52,10 @@ const Customer2 = () => {
 
     useEffect(() => {
         setLoading(true)
-        let url = "http://127.0.0.1:8000/api/schools/";
+        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
-        .then(response => {if (!response.ok) throw Error("Serverio klaida"); else response.json()})
+        .then((response) => {if (response.ok) return response.json(); else throw Error("Serverio klaida")})
         .then((result) => {setSchools(schools = result)})
         .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
         .then(result => {setLoading(false)})
@@ -92,13 +92,13 @@ const Customer2 = () => {
         showRegistrationModal && setShowRegistrationModal(false)
     }
 
-    let handleResize = () => {
-        console.log(window.innerWidth)
-        window.innerWidth <= 479 && setPhoneSize(true)
-        window.innerWidth >= 479 && setPhoneSize(false)
-    }
+    // let handleResize = () => {
+    //     console.log(window.innerWidth)
+    //     window.innerWidth <= 479 && setPhoneSize(true)
+    //     window.innerWidth >= 479 && setPhoneSize(false)
+    // }
 
-    window.addEventListener('resize', handleResize)
+    // window.addEventListener('resize', handleResize)
 
     let disableScroll = () => {
         document.body.classList.add("stop-scrolling");
@@ -114,7 +114,8 @@ const Customer2 = () => {
             {showRegistrationModal && <div style={{width:"100vw", height:"100vh", position:"fixed", backgroundColor:"grey", opacity:"0.6", zIndex:"1500"}}></div>}
             <div>
                 <Header2 />
-                {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
+                <Slidinggallery2 images = {images}/>
+                {error ? <div  style = {{display:"flex", justifyContent:"center", alignItems:"center"}}><h2>{error}</h2></div> : 
                 <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                     <div id = "body">
                         <div className="customertop">
@@ -128,7 +129,6 @@ const Customer2 = () => {
                             </div>
                         </div>
                         {loading && <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>}
-                        {error ? <div>{error}</div> :  
                         <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
                             {!showSearchResults ?
                             schoolsPage.map((school, index) =>
@@ -148,11 +148,11 @@ const Customer2 = () => {
                             </ShowSchool>
                             )
                             }
-                        </div>}
+                        </div>
                     <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
                     {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
                     </div>
-                </form>
+                </form>}
             </div>
             <Footer />
         </div>
