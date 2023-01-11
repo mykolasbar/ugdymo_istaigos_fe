@@ -18,7 +18,7 @@ const MyOrders = () => {
     useEffect(() => {
         setLoading(true)
         let id = auth.getUser()?.id;
-        fetch("http://127.0.0.1:8000/api/userorders/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/userorders/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result); notif.setNotifications()})
         .then(()=>setLoading(false))

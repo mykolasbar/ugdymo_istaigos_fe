@@ -16,7 +16,7 @@ const Login = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        fetch("http://127.0.0.1:8000/api/login", {method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/login", {method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
         // .then(console.log(JSON.stringify(data)))
         .then(response => response.json())
         .then((response) => {
@@ -28,7 +28,6 @@ const Login = () => {
             navigate("/customer");
         });
 };
-
 
     return (
         <>
@@ -61,7 +60,7 @@ const Login = () => {
                             </div>
 
                             <div className="d-flex flex-row align-items-center mb-4">
-                                <span className = "m-3">Dont have an account? <Link to="/register">Register</Link></span>.
+                                <span className = "m-3">Dar neturite paskyros? <Link to="/register">Užsiregistruokite</Link>.</span>
                             </div>
 
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

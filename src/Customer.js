@@ -43,7 +43,7 @@ const Customer = () => {
     }
 
     useEffect(() => {
-        let url = "http://127.0.0.1:8000/api/schools/";
+        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
@@ -54,14 +54,14 @@ const Customer = () => {
 
     useEffect(() => {
         let id = auth.getUser()?.id;
-        fetch("http://127.0.0.1:8000/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setPupils(pupils = result)})
         }, [refresh]);
 
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("http://127.0.0.1:8000/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(() => {
             console.log(data)
         setData({})
@@ -72,7 +72,7 @@ const Customer = () => {
         setShowSearchResults(!showSearchResults)
         // event.preventDefault()
         console.log(query)
-        fetch("http://127.0.0.1:8000/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
         .then(console.log(schools))

@@ -15,14 +15,14 @@ const Requests = () => {
 
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/showallrequests/", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/showallrequests/", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result); console.log(orders)})
     }, [refresh]);
 
     let confirmReservation = (orderId) => {
         // event.preventDefault()
-        fetch("http://127.0.0.1:8000/api/confirmrequest/" + orderId, {method: 'PUT'})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/confirmrequest/" + orderId, {method: 'PUT'})
         .then(() => {
             notif.setNotifications()
             notif.newRequests()

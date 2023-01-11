@@ -11,7 +11,7 @@ const Notifications = (props) => {
 
     useEffect(() => {
         if (props.resetNotifs == 2)
-        fetch("http://127.0.0.1:8000/api/makeviewed/" + auth.getUser()?.id, {method: 'PUT'})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/makeviewed/" + auth.getUser()?.id, {method: 'PUT'})
         .then(()=>notif.setNotifications())
     }, [props.resetNotifs]);
 

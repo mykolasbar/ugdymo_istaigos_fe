@@ -13,7 +13,7 @@ const Register = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        fetch("http://127.0.0.1:8000/api/register", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/register", {method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)})
         .then(console.log(JSON.stringify(data)))
         .then(setData({}))
         .then(navigate("/login"))

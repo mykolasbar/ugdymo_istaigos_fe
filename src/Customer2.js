@@ -22,6 +22,7 @@ const Customer2 = () => {
     const [loading, setLoading] = useState(false)
     const [phoneSize, setPhoneSize] = useState(false)
     let [schoolId, setSchoolId] = useState()
+    let [picture, setPicture] = useState()
 
 
     let [page, setPage] = useState(1)
@@ -64,14 +65,14 @@ const Customer2 = () => {
 
     // useEffect(() => {
     //     let id = auth.getUser()?.id;
-    //     fetch("http://127.0.0.1:8000/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+    //     fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
     //     .then(response => response.json())
     //     .then((result) => {setPupils(pupils = result)})
     //     }, [refresh]);
 
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("http://127.0.0.1:8000/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(() => {
             console.log(data)
         setData({})
@@ -82,7 +83,7 @@ const Customer2 = () => {
         setShowSearchResults(!showSearchResults)
         // event.preventDefault()
         console.log(query)
-        fetch("http://127.0.0.1:8000/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setLoading(false); setSchools(schools = result)})
         .then(console.log(schools))
@@ -135,7 +136,7 @@ const Customer2 = () => {
                                 <ShowSchool title = {school.title} picture = {school.picture} key = {school.id} >
                                     <div key = {school.id} style = {{padding: "5px", backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#CCE5FF", height: "150px", borderRadius: "0 0 10px 10px"}}> 
                                         <span><b>Mokyklos kodas: </b> {school.code} <br/> <b>Mokyklos adresas: </b>{school.address}</span> <br/>
-                                        <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); disableScroll()}}>Užregistruoti</div>
+                                        <div style={{textDecorationLine: "none"}} className="btn btn-dark btn-sm mt-2" onClick={()=>{setShowRegistrationModal(true); setSchoolId(school.id); setPicture(school.picture); disableScroll()}}>Užregistruoti</div>
                                     </div>
                                 </ShowSchool>)
                             :
@@ -150,7 +151,7 @@ const Customer2 = () => {
                             }
                         </div>
                     <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
-                    {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
+                    {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} picture={picture} enableScroll={enableScroll}/>}
                     </div>
                 </form>}
             </div>

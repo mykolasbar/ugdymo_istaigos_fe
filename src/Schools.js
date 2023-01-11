@@ -32,7 +32,7 @@ const Schools = () => {
     }
 
     useEffect(() => {
-        let url = "http://127.0.0.1:8000/api/schools/";
+        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})
@@ -42,14 +42,14 @@ const Schools = () => {
 
     let handleDelete = (id) => {
         console.log(id)
-        fetch("http://127.0.0.1:8000/api/deleteschool/" + id, {method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/deleteschool/" + id, {method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then((response) => {
             setRefresh(!refresh)})
     }
 
     let handleSubmit = (event) => {
         // event.preventDefault();
-        fetch("http://127.0.0.1:8000/api/addschool", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then((result)=>console.log(result))
         .then(() => {
             setRefresh(!refresh)

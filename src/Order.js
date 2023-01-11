@@ -19,7 +19,7 @@ const Order = () => {
     }
 
     // useEffect(() => {
-    //     let url = "http://127.0.0.1:8000/api/schools/";
+    //     let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
     //     fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
     //     .then(response => response.json())
     //     .then((result) => {setSchools(schools = result)})
@@ -30,7 +30,7 @@ const Order = () => {
     let handleSubmit = (e) => {
         // let id = auth.getUser()?.id;
         e.preventDefault();
-        fetch("http://127.0.0.1:8000/api/newpupil/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(response => response.json())
         .then((response) => {if (response.message ==  "Mokinys pridėtas sėkmingai") {setStatus(status = "Mokinys pridėtas sėkmingai"); setShowNotif(!showNotif); console.log(status)}; if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra"); setShowNotif(!showNotif); console.log(status)}})
         .then((response) => {if (status == "Mokinys pridėtas sėkmingai") {
