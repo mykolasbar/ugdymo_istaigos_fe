@@ -54,7 +54,7 @@ const Customer2 = () => {
         setLoading(true)
         let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
 
-        fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }})
         .then((response) => {if (response.ok) return response.json(); else throw Error("Serverio klaida")})
         .then((result) => {setSchools(schools = result)})
         .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
