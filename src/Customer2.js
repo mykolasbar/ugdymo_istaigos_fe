@@ -115,7 +115,6 @@ const Customer2 = () => {
             <div>
                 <Header2 />
                 {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
-                {error ? <div>{error}</div> :  
                 <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                     <div id = "body">
                         <div className="customertop">
@@ -129,6 +128,7 @@ const Customer2 = () => {
                             </div>
                         </div>
                         {loading && <div style = {{height:"50vw", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>}
+                        {error ? <div>{error}</div> :  
                         <div id = "schoolsBox" className = "d-flex flex-wrap mt-4">
                             {!showSearchResults ?
                             schoolsPage.map((school, index) =>
@@ -148,11 +148,11 @@ const Customer2 = () => {
                             </ShowSchool>
                             )
                             }
-                        </div>
+                        </div>}
                     <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
                     {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
                     </div>
-                </form>}
+                </form>
             </div>
             <Footer />
         </div>
