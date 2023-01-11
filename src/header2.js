@@ -23,10 +23,9 @@ const dropdownRef = useRef()
 
 useEffect(()=>{notif.setNotifications()}, [auth.getUser()?.name])
 
-useEffect(()=>{let timer = setTimeout(() => {
-    setShowCookiesPrompt(true)
-}, 4000)
-return () => clearTimeout(timer)
+useEffect(()=>{
+    let timer = setTimeout(() => {setShowCookiesPrompt(true)}, 4000)
+    return () => clearTimeout(timer)
 }, [])
 
 

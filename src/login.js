@@ -40,7 +40,7 @@ const Login = () => {
                         <div className="row justify-content-center">
                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Prisijungimas</p>
 
                             <form className="mx-1 mx-md-4" onSubmit = { handleSubmit }>
 
@@ -48,7 +48,7 @@ const Login = () => {
                                 <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                 <div className="form-outline flex-fill mb-0">
                                 <input onChange={ handleData } type="email" name="email" className="form-control" />
-                                <label className="form-label" htmlFor="email">Your Email</label>
+                                <label className="form-label" htmlFor="email">Jūsų el. paštas</label>
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@ const Login = () => {
                                 <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                 <div className="form-outline flex-fill mb-0">
                                 <input onChange={ handleData } type="password" name="password" className="form-control" />
-                                <label className="form-label" htmlFor="password">Password</label>
+                                <label className="form-label" htmlFor="password">Slaptažodis</label>
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@ const Login = () => {
                             </div>
 
                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                            <button type="submit" className="btn btn-primary btn-lg">Log in</button>
+                            <button type="submit" className="btn btn-primary btn-lg">Prisijungti</button>
                             </div>
 
                             </form>

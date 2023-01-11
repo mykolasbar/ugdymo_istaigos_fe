@@ -18,7 +18,7 @@ const CookiesPropt = () => {
         <>
             {!cookiesConfirmed &&
             <div id="cookiesPromptWindow">
-                <div style={{display:"flex", flexDirection:"row", width:"100%", justifyContent:"flex-end", padding:"15px 20px 0 0"}}><span class="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>setCookiesConfirmed(true)}>close</span></div>
+                <div style={{display:"flex", flexDirection:"row", width:"100%", justifyContent:"flex-end", padding:"15px 20px 0 0"}}><span className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>setCookiesConfirmed(true)}>close</span></div>
                 <div style = {{padding:"0 20px 25px 25px"}}>
                     <div style={{padding:"5px"}}>Paspausdama(s) "Sutinku" arba toliau naršydama(s) šią svetainę, neprieštarauju kad mano įrenginyje dėl naršymo patirties pagerinimo būtų išsaugomi slapukai.</div>
                     <div style={{display:"flex", flexDirection:"row", width:"100%", alignItems:"center", justifyContent:"center"}}><input type="button" value="Sutinku" onClick={()=>{handleCookie()}} className="btn btn-warning"></input></div>

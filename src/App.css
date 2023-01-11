@@ -162,7 +162,6 @@
   text-decoration:none;
   padding:20px;
   transition: background-color 0.5s;
-  /* transition: background-color 0.5s; */
 }
 
 #mainmenuitemwithdropdown:hover {
