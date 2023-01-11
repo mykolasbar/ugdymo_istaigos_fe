@@ -52,7 +52,7 @@ const Customer2 = () => {
 
     useEffect(() => {
         setLoading(true)
-        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
+        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then((response) => {if (response.ok) return response.json(); else throw Error("Serverio klaida")})
