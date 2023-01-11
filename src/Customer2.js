@@ -35,6 +35,7 @@ const Customer2 = () => {
     let [showRegistrationModal, setShowRegistrationModal] = useState(false)    
 
     let [showSchoolInfo, setShowSchoolInfo] = useState(false)
+    let [error, setError] = useState(null)
 
     const images = [
         {id: 1, src: "mokykla1.jpg"},
@@ -54,10 +55,11 @@ const Customer2 = () => {
         let url = "http://127.0.0.1:8000/api/schools/";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
-        .then(response => response.json())
+        .then(response => {if (!response.ok) throw Error("Serverio klaida"); else response.json()})
         .then((result) => {setSchools(schools = result)})
         .then(() => {setTotalPages(totalPages = Math.ceil(schools.length / recordsPerPage)); setSchoolsPage(schoolsPage = schools.slice(indexOfFirstPost, indexOfLastPost))})
         .then(result => {setLoading(false)})
+        .catch((err) => {console.log(err.message); setError(err.message)})
     }, [page]);
 
     useEffect(() => {
@@ -113,6 +115,7 @@ const Customer2 = () => {
             <div>
                 <Header2 />
                 {phoneSize ? "" : <Slidinggallery2 images = {images}/>}
+                {error ? <div>{error}</div> :  
                 <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                     <div id = "body">
                         <div className="customertop">
@@ -149,7 +152,7 @@ const Customer2 = () => {
                     <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page}/>
                     {showRegistrationModal && <RegisterPupil closeModal = {closeModal} schoolId = {schoolId} enableScroll={enableScroll}/>}
                     </div>
-                </form>
+                </form>}
             </div>
             <Footer />
         </div>
