@@ -14,7 +14,7 @@ const NewSchool = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool/", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
         .then(response=>response.json())
         .then(result => {
             console.log(result)

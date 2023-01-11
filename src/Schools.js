@@ -32,7 +32,7 @@ const Schools = () => {
     }
 
     useEffect(() => {
-        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools/";
+        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools";
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchools(schools = result)})

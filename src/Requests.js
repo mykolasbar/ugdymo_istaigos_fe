@@ -15,7 +15,7 @@ const Requests = () => {
 
 
     useEffect(() => {
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/showallrequests/", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/showallrequests", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result); console.log(orders)})
     }, [refresh]);
