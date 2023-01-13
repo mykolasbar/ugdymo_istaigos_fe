@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef }  from 'react';
 import { AuthContext } from "./Auth"
-import Header from './header';
+import Header2 from './header2';
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const NewSchool = () => {

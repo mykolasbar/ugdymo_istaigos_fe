@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef }  from 'react';
 import { AuthContext } from "./Auth"
-import Header from './header';
+import Header2 from './header2';
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 
@@ -38,7 +38,7 @@ const EditSchool = () => {
  
     return (
         <>            
-        <Header />
+        <Header2 />
         <div className="d-flex aligns-items-center justify-content-center">   
             <div className=" w-75 m-3">
                 <span className = "card border-0 m-2"><h3>Atnaujinti mokyklos duomenis</h3></span>
