@@ -70,6 +70,11 @@
   transition: background-color 0.5s;
 }
 
+#adminsidebar:hover {
+  background-color:#6c5be7;
+  transition: background-color 0.5s;
+}
+
 #usersidebar:active {
   background-color:#d44646;
   transition: background-color 0.5s;
@@ -315,6 +320,10 @@
 #footer:hover {
   background-color:rgb(255, 13, 13);
   transition: background-color 0.5s;
+}
+
+#newschool {
+  min-width:70vw;
 }
 
 @media screen and (max-width: 850px) {

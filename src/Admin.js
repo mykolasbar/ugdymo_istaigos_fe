@@ -10,16 +10,16 @@ const Admin = () => {
             <div>
                 <div>
                     <Header2 />
-                    <div id="sidebarcontainer"  style = {{width:"100vw", heught:"100%"}}>
-                        <div id="sidebar" style = {{backgroundColor:"red"}}>
+                    <div id="sidebarcontainer" style = {{width:"100vw"}}>
+                        <div id="sidebar" style = {{backgroundColor:"blue", color:"white", fontWeight:"bold"}}>
                             <nav id="sidebarlist" >
-                                <div id="usersidebar" className="nav-item p-2">
+                                <div id="adminsidebar" className="nav-item p-3">
                                     <Link className="nav-link" to="/admin/editschools">Mokyklos</Link>
                                 </div>
-                                <div id="usersidebar" className="nav-item p-2">
+                                <div id="adminsidebar" className="nav-item p-3">
                                     <Link className="nav-link" to="/admin/editrequests">Prašymai</Link>
                                 </div>
-                                <div id="usersidebar" className="nav-item p-2">
+                                <div id="adminsidebar" className="nav-item p-3">
                                     <Link className="nav-link" to="/admin/newschool">Nauja mokykla</Link>
                                 </div>
                             </nav>
