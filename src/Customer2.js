@@ -93,14 +93,6 @@ const Customer2 = () => {
         showRegistrationModal && setShowRegistrationModal(false)
     }
 
-    // let handleResize = () => {
-    //     console.log(window.innerWidth)
-    //     window.innerWidth <= 479 && setPhoneSize(true)
-    //     window.innerWidth >= 479 && setPhoneSize(false)
-    // }
-
-    // window.addEventListener('resize', handleResize)
-
     let disableScroll = () => {
         document.body.classList.add("stop-scrolling");
     }

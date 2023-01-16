@@ -7,25 +7,25 @@ import Footer from './footer';
 
 const Admin = () => {
     return (
-            <div style = {{display:"flex", flexDirection:"column", minHeight:"100vh", justifyContent:"space-between"}}>
+            <div>
                 <div>
                     <Header2 />
-                    <nav className="navbar-expand-lg navbar-light bg-primary p-2 w-100 d-flex flex-row align-items-center" style = {{height:"80px"}}>
-                            <div className="d-flex justify-content-between w-100">
-                                <ul className="navbar-nav p-3">
-                                    <li className="nav-item active p-2">
-                                        <Link className="nav-link" to="/admin/editschools">Mokyklos</Link>
-                                    </li>
-                                    <li className="nav-item p-2">
-                                        <Link className="nav-link" to="/admin/editrequests">Prašymai</Link>
-                                    </li>
-                                    <li className="nav-item p-2">
-                                        <Link className="nav-link" to="/admin/newschool">Nauja mokykla</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                    </nav>
-                    <Outlet />
+                    <div id="sidebarcontainer">
+                        <div id="sidebar" style = {{backgroundColor:"blue"}}>
+                            <nav id="sidebarlist" >
+                                <div id="usersidebar" className="nav-item p-2">
+                                    <Link className="nav-link" to="/admin/editschools">Mokyklos</Link>
+                                </div>
+                                <div id="usersidebar" className="nav-item p-2">
+                                    <Link className="nav-link" to="/admin/editrequests">Prašymai</Link>
+                                </div>
+                                <div id="usersidebar" className="nav-item p-2">
+                                    <Link className="nav-link" to="/admin/newschool">Nauja mokykla</Link>
+                                </div>
+                            </nav>
+                        </div>
+                        <Outlet />
+                    </div>
                 </div>
                 <Footer />
             </div>

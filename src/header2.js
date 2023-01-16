@@ -38,7 +38,7 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                 <div id = "headersmall">
                     <div><Link to="/customer"><img id = "logo" src = { require("./ikona_be_fono.png") } alt="logo" /></Link></div>
                     <Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link>
-                    <div onClick = {()=>{setShowMainDropdown(!showMainDropdown); console.log(showMainDropdown)}}><BurgerMenu/></div>
+                    <div onClick = {()=>{setShowMainDropdown(!showMainDropdown)}}><BurgerMenu/></div>
                     {/* <div id="notificationsmallscreen">
                         <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif)}}>notifications</span>
                         {notif.getNotifsArray().length !== 0 && <div style = {{color:"red"}}>{notif.getNotifsArray().length}</div>}

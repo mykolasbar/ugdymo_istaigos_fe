@@ -6,7 +6,8 @@ const Pagination = (props) => {
 
     useEffect(() => {
         for (let i = 1; i <= props.totalPages; i++) {
-            pageNumbers.push(i);
+            // pageNumbers.push(i);
+            setPageNumbers(pageNumbers => [...pageNumbers, i])
         }
         }, [props.totalPages]);
         
