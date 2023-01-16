@@ -10,16 +10,11 @@ const NewSchool = () => {
 
     var formData = new FormData();
 
-
-
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
         .then(response=>response.json())
-        .then(result => {
-            console.log(result)
-        setData({})
-        })
+        .then(result => {console.log(result); setData({})})
     }
 
     return (
