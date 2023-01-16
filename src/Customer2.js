@@ -63,13 +63,6 @@ const Customer2 = () => {
         .catch((err) => {console.log(err.message); setError(err.message)})
     }, [page]);
 
-    // useEffect(() => {
-    //     let id = auth.getUser()?.id;
-    //     fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
-    //     .then(response => response.json())
-    //     .then((result) => {setPupils(pupils = result)})
-    //     }, [refresh]);
-
     let handleSubmit = (event) => {
         event.preventDefault()
         fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
@@ -110,7 +103,7 @@ const Customer2 = () => {
                 <Slidinggallery2 images = {images}/>
                 {error ? <div  style = {{display:"flex", justifyContent:"center", alignItems:"center"}}><h2>{error}</h2></div> : 
                 <form onSubmit = { handleSubmit } style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-                    <div id = "body">
+                    <div id = "body" style={{marginBottom:"100px"}}>
                         <div className="customertop">
                             <div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
                             <div className="d-flex justify-content-end">

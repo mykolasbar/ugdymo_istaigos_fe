@@ -38,10 +38,13 @@ const Requests = () => {
 
     return (
         <>
+            {orders.length == 0? <div style = {{padding:"30px"}}>Šiuo metu prašymų nėra. Kai atsiras naujų prašymų, juos matysite čia.</div> : 
             <table className = "table-borderless m-3">
-                <thead><tr><td>Visi prašymai <span className = "text-primary">({orders.length})</span></td></tr></thead>
-                <tbody>
+                <thead>
+                    <tr><td>Visi prašymai <span className = "text-primary">({orders.length})</span></td></tr>
                     <tr><td><b>Prašymo ID</b></td><td onClick={()=>sortByX()}><b>Mokinys</b></td><td><b>Mokykla</b></td><td><b>Statusas</b></td></tr>
+                </thead>
+                <tbody>
                     {orders.map((order) => 
                     <tr id = "adminrow" key = {order.id} style = {{fontSize: "1rem", height: "60px"}} className = "m-2"> 
                         <td className = "w-25 p-2">{order.id}</td>
@@ -51,7 +54,7 @@ const Requests = () => {
                     </tr>)}
                     <tr></tr>
                 </tbody>
-            </table>
+            </table>}
         </>
     );
 };

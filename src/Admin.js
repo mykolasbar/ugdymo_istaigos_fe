@@ -10,8 +10,8 @@ const Admin = () => {
             <div>
                 <div>
                     <Header2 />
-                    <div id="sidebarcontainer">
-                        <div id="sidebar" style = {{backgroundColor:"blue"}}>
+                    <div id="sidebarcontainer"  style = {{width:"100vw", heught:"100%"}}>
+                        <div id="sidebar" style = {{backgroundColor:"red"}}>
                             <nav id="sidebarlist" >
                                 <div id="usersidebar" className="nav-item p-2">
                                     <Link className="nav-link" to="/admin/editschools">Mokyklos</Link>

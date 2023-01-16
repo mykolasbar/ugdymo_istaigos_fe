@@ -306,7 +306,7 @@
   bottom:0;
   width:100vw;
   background-color:rgb(255, 13, 13, 0.4);
-  margin-top:50px;
+  /* margin-top:50px; */
   padding:20px;
   text-align: end;
   color:black;

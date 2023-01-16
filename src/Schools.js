@@ -58,7 +58,7 @@ const Schools = () => {
 
 
     return (
-        <div style={{display:"flex", flexDirection:"column"}}>  
+        <div style={{display:"flex", flexDirection:"column", width:"100%"}}>  
             <div className = "card border-0 m-3 mt-2 p-2 w-75 rounded-0">
                 <Link to = {'/admin/newschool/'} style={{color: "black"}}>Pridėti naują mokyklą</Link>
             </div>
