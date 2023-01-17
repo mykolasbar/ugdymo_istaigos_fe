@@ -73,15 +73,18 @@ const RegisterPupil = (props) => {
         {auth.isLoggedin() || auth.isLoggedinAdmin() &&  
             <form id = "pupilwindow" className = "container p-4 mt-5">
                 {showNotif && status}<br/>
-                <label><b>Pasirinkite mokinį</b></label> 
-                <select name = "requests_id" className="form-control  mb-2 mt-2" onChange={(event)=>{setPupilId(pupilId = event.target.value); console.log(pupilId)}}>
-                    <option value="N/A" className="form-control" ></option>
-                    { pupils.map((pupil) => 
-                    <option name = "requests_id" className = "m-4" key = {pupil.id} value = {pupil.id}> 
-                    {pupil.id} {pupil.name}
-                    </option>) 
-                    }
-                </select> 
+                {pupils.length === 0 ? "" :
+                <div>
+                    <label><b>Pasirinkite mokinį</b></label> 
+                    <select name = "requests_id" className="form-control  mb-2 mt-2" onChange={(event)=>{setPupilId(pupilId = event.target.value); console.log(pupilId)}}>
+                        <option value="N/A" className="form-control" ></option>
+                        { pupils.map((pupil) => 
+                        <option name = "requests_id" className = "m-4" key = {pupil.id} value = {pupil.id}> 
+                        {pupil.id} {pupil.name}
+                        </option>) 
+                        }
+                    </select> 
+                </div>}
                 arba
                 <span style = {{display: showNotif ? "block" : "none", position: "absolute"}}>{status}</span>
                 <span className = "card border-0 mt-1"><b>Pridėkite naują mokinį</b></span>
