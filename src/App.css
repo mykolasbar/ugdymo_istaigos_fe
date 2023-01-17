@@ -353,6 +353,10 @@
     display:none;
   }
 
+  #adminsidebar {
+    min-width:145px;
+  }
+
   #schoolBox {
     width: 100%;
     height: 200px;

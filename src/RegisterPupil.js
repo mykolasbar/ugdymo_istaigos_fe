@@ -45,14 +45,14 @@ const RegisterPupil = (props) => {
     let handleSubmit = (e) => {
         e.preventDefault();
         pupilId !== '' ? 
-            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
+            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
             .then(()=>{setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)})
             .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll(); navigate('/customer')}, 4000)}})
             :
-            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
             .then(response => response.json())
             .then(response => {if (response.message ==  "Mokinys pridėtas sėkmingai") {
-                fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest/", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
+                fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
                 setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)}
                 if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra")}
             })
