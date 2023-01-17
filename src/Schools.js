@@ -59,28 +59,28 @@ const Schools = () => {
 
     return (
         <div style={{display:"flex", flexDirection:"column", width:"100%"}}>  
-            <div className = "card border-0 m-3 mt-2 p-2 w-75 rounded-0">
+            <div className = "card border-0 m-3 mt-2 p-2 rounded-0">
                 <Link to = {'/admin/newschool/'} style={{color: "black"}}>Pridėti naują mokyklą</Link>
             </div>
-                <table className = "table-borderless m-3 w-50">
-                    <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
-                    <tbody>
-                    <tr>
-                        <td className = "p-2"><b>Pavadinimas</b></td>
-                        <td className = "p-2" name = "kaina"><b>Kodas</b></td>
-                        <td className = "p-2" name = "nuotrauka" ><b>Adresas</b></td>
-                    </tr>
-                    {schoolsPage.map((school, index) => 
-                    <tr id = "adminrow" key = {school.id} style = {{fontSize: "1rem", height: "60px"}}> 
-                        <td className = "w-20 p-2">{school.title}</td>
-                        <td className = "w-20 p-2">{school.code}</td>
-                        <td className = "w-20 p-2">{school.address}</td>
-                        <td className = "w-20 p-2"><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą" style={{minWidth:"100px"}}></input></td>
-                        <td className = "w-20 p-2"><button className="btn btn-dark btn-sm m-2 rounded-0" style={{minWidth:"220px"}}><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none", color: "white"}}>Atnaujinti mokyklos duomenis</Link></button></td>
+            <table className = "table-borderless m-3">
+                <thead><tr><td>Visos mokyklos <span className = "text-primary">({schools.length})</span></td></tr></thead>
+                <tbody>
+                <tr>
+                    <td className = "p-2"><b>Pavadinimas</b></td>
+                    <td className = "p-2" name = "kaina"><b>Kodas</b></td>
+                    <td className = "p-2" name = "nuotrauka" ><b>Adresas</b></td>
+                </tr>
+                {schoolsPage.map((school, index) => 
+                <tr id = "adminrow" key = {school.id} style = {{fontSize: "1rem", height: "60px"}}> 
+                    <td className = "w-20 p-2">{school.title}</td>
+                    <td className = "w-20 p-2">{school.code}</td>
+                    <td className = "w-20 p-2">{school.address}</td>
+                    <td className = "w-20 p-2"><input className="btn btn-danger btn-sm m-2 rounded-0" type = "button" onClick = {() => {handleDelete(school.id)}} value = "Pašalinti mokyklą" style={{minWidth:"100px"}}></input></td>
+                    <td className = "w-20 p-2"><button className="btn btn-dark btn-sm m-2 rounded-0" style={{minWidth:"220px"}}><Link to={'/editschool/' + school.id} style={{textDecorationLine: "none", color: "white"}}>Atnaujinti mokyklos duomenis</Link></button></td>
                     </tr>)}
-                    </tbody>
-                </table>
-                <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
+                </tbody>
+            </table>
+            <Pagination totalPages = {totalPages} setCurrentPage = {setCurrentPage} page = {page} />
         </div>
     );
 };

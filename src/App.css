@@ -70,6 +70,10 @@
   transition: background-color 0.5s;
 }
 
+#adminsidebar {
+  min-width:160px;
+}
+
 #adminsidebar:hover {
   background-color:#6c5be7;
   transition: background-color 0.5s;

@@ -67,7 +67,7 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                     ) : (
                     <div id="rightmenu">
                         <div style={{flexDirection:"column"}}>
-                            <div id="mainmenuitem"><Link  to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
+                            <div id="mainmenuitem" style={{minWidth:"140px"}}><Link to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
                             <span ref = {buttonRef} className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{setShowAccountDropdown(!showAccountDropdown)}}>expand_more</span></div>
                             <div style = {{display: showAccountDropdown ? "block" : "none"}} id = "dropdownContainer">{<AccountDropdown/>}</div>
                         </div>
