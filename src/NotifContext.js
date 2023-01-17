@@ -14,7 +14,7 @@ export let NotifProvider = ({children}) => {
     
     let setNotifications = () => {
         if (auth.getUser()?.id != null) {
-            fetch("https://ugdymoistaigosbe.herokuapp.com/api/userorders/" + auth.getUser()?.id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+            fetch("https://ugdymoistaigosbe.herokuapp.com/api/userorders/" + auth.getUser()?.id, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
             .then(response => response.json())
             .then(result => setNotifsArray(notifsArray = result.filter(order => {
                 return order.confirmed == true && order.viewed == false;

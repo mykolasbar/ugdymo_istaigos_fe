@@ -72,12 +72,12 @@
 
 #adminsidebar {
   width:160px;
-  height:90px;
+  /* height:90px; */
 }
 
 #adminsidebar:hover {
   background-color:#6c5be7;
-  height:90px;
+  /* height:90px; */
   transition: background-color 0.5s;
 }
 

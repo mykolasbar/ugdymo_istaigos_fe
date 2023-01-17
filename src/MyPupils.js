@@ -24,7 +24,7 @@ const MyPupils = () => {
     useEffect(() => {
         setLoading(true)
         let id = auth.getUser()?.id;
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/userpupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/userpupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result)})
         .then(()=>setLoading(false))
