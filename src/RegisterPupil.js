@@ -105,7 +105,7 @@ const RegisterPupil = (props) => {
                     <input type = "submit" value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal(); props.enableScroll()}}></input>
             </form>}
         {!auth.isLoggedin() && !auth.isLoggedinAdmin() && 
-            <div style={{zIndex:"2000", width:"40vw", position:"fixed", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", borderRadius: "10px", position: "fixed",  backgroundColor: "white", left:"30%", top:"15%"}} className = "container mt-5">
+            <div id="userNotLoggedIn" style={{zIndex:"2000", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", borderRadius: "10px", position: "fixed",  backgroundColor: "white"}} className = "container mt-5">
                 <div style={{display:"flex", flexDirection:"row", width:"100%", justifyContent:"flex-end", padding:"0 0 0 0", position:"absolute", left:"-20px", top:"15px"}}><span id="closeIcon" className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{props.closeModal(); props.enableScroll()}}>close</span></div>
                 <div style = {{ backgroundSize: "cover", backgroundPosition: "center", backgroundImage: "URL(https://mybucket1-ugdymoistaigos.s3.eu-west-1.amazonaws.com/" + props.picture + ")", backgroundColor: "#CCE5FF", height: "200px", width:"100%", fontSize: "0", borderRadius: "10px 10px 0 0", marginTop:"13px"}}>aa</div>
                 <div style={{padding:"15px"}}>Kad galėtumėte užregistruoti mokinį į mokyklą, turite <Link to="/login">prisijungti</Link>.</div>

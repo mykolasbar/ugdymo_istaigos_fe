@@ -337,6 +337,12 @@
   transition: text-shadow 0.5s;
 }
 
+#userNotLoggedIn {
+  width:40vw;
+  top:15%;
+  left:30%;
+} 
+
 @media screen and (max-width: 850px) {
   #sidebarcontainer {
     display:flex; 
@@ -428,6 +434,12 @@
   #cookiesPromptWindow {
     width:90vw;
     left:5%;
+  }
+
+  #userNotLoggedIn {
+    width:80vw;
+    top:15%;
+    left:15%;
   }
 }
 
@@ -557,5 +569,10 @@
     width:90vw;
     left:3%;
   }
-  
+
+  #userNotLoggedIn {
+    width:100vw;
+    left:0;
+    top:15%;
+  } 
 }
