@@ -22,7 +22,7 @@ const Requests = () => {
 
     let confirmReservation = (orderId) => {
         // event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/confirmrequest/" + orderId, {method: 'PUT'})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/confirmrequest/" + orderId, {method: 'PUT', headers: { Authorization: `Bearer ${auth.getToken()}` }})
         .then(() => {
             notif.setNotifications()
             notif.newRequests()
