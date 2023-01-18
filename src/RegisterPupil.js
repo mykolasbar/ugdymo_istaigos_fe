@@ -85,7 +85,7 @@ const RegisterPupil = (props) => {
                         </option>) 
                         }
                     </select> 
-                arba
+                    arba
                 </div>}
                 <span style = {{display: showNotif ? "block" : "none", position: "absolute"}}>{status}</span>
                 <span className = "card border-0 mt-1"><b>Pridėkite naują mokinį</b></span>

@@ -108,7 +108,7 @@ const Customer2 = () => {
                             <div>Visos mokyklos <span className = "text-primary">({schools.length})</span></div>
                             <div className="d-flex justify-content-end">
                                 <div>
-                                    <label className = "mt-1" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
+                                    <label className = "mt-2" htmlFor="site-search">Ieškoti mokyklos: &nbsp;</label>
                                     <div style={{display:"flex", flexDirection:"row"}}>
                                         <input type="search" id="site-search" name="query" className="mt-2 mb-2" onChange={(event) => {setQuery(event.target.value); console.log(query)}}></input>
                                         <button type="submit" className="btn btn-dark btn-sm m-2" onClick={(event) => {handleSerch()}}>Ieškoti</button>
