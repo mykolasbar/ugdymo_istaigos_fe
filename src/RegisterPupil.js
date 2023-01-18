@@ -30,14 +30,14 @@ const RegisterPupil = (props) => {
     useEffect(() => {
         let id = auth.getUser()?.id;
         console.log(userId)
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {return setPupils(pupils = result)})
         }, [userId]);
 
     useEffect(() => {
         if (pupilId != '') {
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupil/" + pupilId, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupil/" + pupilId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setPupil(pupil = result)})}
         }, [pupilId]);
@@ -74,7 +74,7 @@ const RegisterPupil = (props) => {
         {(auth.isLoggedin() || auth.isLoggedinAdmin()) &&  
             <form id = "pupilwindow" className = "container p-4 mt-2">
                 {showNotif && <text className = "mb-4">{status}<br/></text>}
-                {pupils.length == 0 ? <div className = "mb-3">Kol kas nesate pridėję jokių mokinių. Kad galėtumėte užregistruoti mokinį į šią mokyklą, pridėkite užpildykite mokinio duomenis:</div> :
+                {(pupils.length === 0) ? <div className = "mb-3">Kol kas nesate pridėję jokių mokinių. Kad galėtumėte užregistruoti mokinį į šią mokyklą, pridėkite užpildykite mokinio duomenis:</div> :
                 <div>
                     <label><b>Pasirinkite mokinį</b></label> 
                     <select name = "requests_id" className="form-control mb-2 mt-2" onChange={(event)=>{setPupilId(pupilId = event.target.value); console.log(pupilId)}}>

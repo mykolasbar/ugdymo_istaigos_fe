@@ -220,7 +220,8 @@
   border-radius: 10px;
   position: fixed;
   background-color: white;
-  left:25%;
+  left:50%;
+  margin-left:-25%;
   top:15%;
   z-index:2000;
   width:50vw;
@@ -413,7 +414,8 @@
   }
 
   #pupilwindow {
-    left:12%;
+    margin-left:0;
+    left:12.5%;
     top:15%;
     width:75vw;
   }
@@ -552,9 +554,9 @@
   }
 
   #pupilwindow {
-    left:4%;
+    left:0;
     top:15%;
-    width:90vw;
+    width:100vw;
   }
 
   #itemstable {
