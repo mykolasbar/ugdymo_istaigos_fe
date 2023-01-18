@@ -12,8 +12,8 @@ const EditSchool = () => {
     let navigate = useNavigate('')
     let [refresh, setRefresh] = useState(false)
     let auth = useContext(AuthContext)
-
-
+    let [status, setStatus] = useState('')
+    let [showNotif, setShowNotif] = useState(false)
 
     var formData = new FormData();
 
@@ -23,10 +23,12 @@ const EditSchool = () => {
             console.log(key[0] + ', ' + key[1])
         }
         fetch("https://ugdymoistaigosbe.herokuapp.com/api/school/" + id + "?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
-        .then(response => console.log(response))
-        .then(() => {
-            navigate("/admin");
-        });
+        // .then(response => console.log(response.status))
+        // .then(response => response.json())
+        .then(response=>{if (response.status) setStatus('Mokykla atnaujinta sėkmingai.'); setShowNotif(true)})
+        // .then(() => {
+        //     navigate("/admin");
+        // });
     }
 
     useEffect(() => {
@@ -58,9 +60,10 @@ const EditSchool = () => {
                         <input className="form-control" type = "text"  defaultValue = {school.address} name = "address" onChange={(event) => formData.append('address', event.target.value)}></input>
                     </div>
                     <div className="form-group m-2">
-                    <input className="btn btn-dark mt-3 rounded-1" type = "submit" value = "Pridėti mokyklą"></input>
+                        <input className="btn btn-dark mt-3 rounded-1" type = "submit" value = "Atnaujinti"></input>
                     </div>
                 </form>}
+                {showNotif && <span style = {{color:"blue"}} className="m-2 mt-4">{status} <Link to ="/admin">Grįžti į mokyklų sąrašą.</Link></span>}
             </div>
         </div>
     </>

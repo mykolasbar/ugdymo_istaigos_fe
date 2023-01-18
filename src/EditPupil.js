@@ -23,6 +23,7 @@ const EditPupil = (props) => {
 
     let handleSubmit = (e) => {
         e.preventDefault();
+        console.log(data)
         fetch("https://ugdymoistaigosbe.herokuapp.com/api/editpupil/" + props.pupilData.id + "?_method=put", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(response => response.json())
         .then((response) => {if (response.message ==  "Mokinys pridėtas sėkmingai") {setStatus(status = "Mokinys atnaujintas sėkmingai"); setShowNotif(!showNotif); console.log(status)}; if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra"); setShowNotif(!showNotif); console.log(status)}})
@@ -30,7 +31,6 @@ const EditPupil = (props) => {
         .then(()=>setDeleteSuccess(true))
         .then(()=>props.enableScroll())
         .then(()=>{props.refreshing()})
-
     }
 
     useEffect(() => {

@@ -16,6 +16,7 @@ const RegisterPupil = (props) => {
     let [pupilId, setPupilId] = useState('')
     let [pupil, setPupil] = useState([])
     let [userId, setUserId] = useState()
+    let [notSubmitted, setNotSubmitted] = useState(false)
 
 
     useEffect(()=>{
@@ -45,19 +46,24 @@ const RegisterPupil = (props) => {
 
     let handleSubmit = (e) => {
         e.preventDefault();
-        pupilId !== '' ? 
+        if (pupilId !== '') {
             fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
             .then(()=>{setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)})
-            .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll(); navigate('/customer')}, 4000)}})
-            :
-            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
-            .then(response => response.json())
-            .then(response => {if (response.message ==  "Mokinys pridėtas sėkmingai") {
-                fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
-                setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)}
-                if (response.message ==  "Toks mokinys jau yra") {setStatus(status = "Toks mokinys jau yra")}
-            })
-            .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll()}, 4000)}})
+            .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll(); navigate('/customer')}, 4000)}})}
+        else {
+            if (data.idnumber == '' || data.idnumber == null || data.name == '' || data.name == null || data.class == '' || data.class == null)
+                {setNotSubmitted(true); console.log(notSubmitted)}
+            else {
+                fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+                .then(response => response.json())
+                .then(response => {
+                    if (response.message ==  "Mokinys pridėtas sėkmingai") {
+                        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
+                        setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif); setNotSubmitted(false)}
+                    if (response.message ==  "Toks mokinys jau yra") 
+                        {setStatus(status = "Toks mokinys jau yra")}
+                })
+                .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll()}, 4000)}})}}
         }
 
     useEffect(() => {
@@ -73,7 +79,7 @@ const RegisterPupil = (props) => {
         <>
         {(auth.isLoggedin() || auth.isLoggedinAdmin()) &&  
             <form id = "pupilwindow" className = "container p-4 mt-2">
-                {showNotif && <text className = "mb-4">{status}<br/></text>}
+                {showNotif && <div className = "mb-4">{status}<br/></div>}
                 {(pupils.length === 0) ? <div className = "mb-3">Kol kas nesate pridėję jokių mokinių. Kad galėtumėte užregistruoti mokinį į šią mokyklą, pridėkite mokinio duomenis:</div> :
                 <div>
                     <label><b>Pasirinkite mokinį</b></label> 
@@ -90,19 +96,19 @@ const RegisterPupil = (props) => {
                 <span style = {{display: showNotif ? "block" : "none", position: "absolute"}}>{status}</span>
                 <span className = "card border-0 mt-1"><b>Pridėkite naują mokinį</b></span>
                 <div className="form-group mt-2">
-                    <label>Asmens kodas</label>
-                    <input className="form-control" type = "text" name = "idnumber" onChange={handleData} placeholder = "Asmens kodas" defaultValue = { pupilId != '' ? pupil.idnumber : "" }></input>
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}><label>Asmens kodas</label><span style={{display: (notSubmitted && (data.idnumber == '' || data.idnumber == null)) ? "inline" : "none", color:"red"}}>Būtina užpildyti šį lauką</span></div>
+                    <input style = {{ border: (notSubmitted && (data.idnumber == '' || data.idnumber == null)) && "1px solid red"}} className="form-control" type = "text" name = "idnumber" onChange={handleData} placeholder = "Asmens kodas" defaultValue = { pupilId != '' ? pupil.idnumber : "" } required></input>
                 </div>
                 <div className="form-group mt-2">
-                    <label>Vardas, pavardė</label>
-                    <input className="form-control h-75" type = "text" name = "name" onChange={handleData} placeholder = "Vardas, pavardė" defaultValue = { pupilId != '' ? pupil.name : "" }></input>
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}><label>Vardas, pavardė</label><span style={{display: (notSubmitted && (data.name == '' || data.name == null)) ? "inline" : "none", color:"red"}}>Būtina užpildyti šį lauką</span></div>
+                    <input style = {{ border: (notSubmitted && (data.name == '' || data.name == null)) && "1px solid red"}} className="form-control h-75" type = "text" name = "name" onChange={handleData} placeholder = "Vardas, pavardė" defaultValue = { pupilId != '' ? pupil.name : "" } required></input>
                 </div>
                 <div className="form-group mt-2">
-                    <label>Klasė</label>
-                    <input className="form-control h-75" type = "text" name = "class" onChange={handleData}  placeholder = "Klasė" defaultValue = { pupilId != '' ? pupil.class : "" }></input>
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}><label>Klasė</label><span style={{display: (notSubmitted && (data.class == '' || data.class == null)) ? "inline" : "none", color:"red"}}>Būtina užpildyti šį lauką</span></div>
+                    <input style = {{ border: (notSubmitted && (data.class == '' || data.class == null)) && "1px solid red"}} className="form-control h-75" type = "text" name = "class" onChange={handleData}  placeholder = "Klasė" defaultValue = { pupilId != '' ? pupil.class : "" } required></input>
                 </div>
                     <input type = "submit" value = "Pridėti" className="btn btn-dark btn-sm m-2" onClick = {handleSubmit}></input>
-                    <input type = "submit" value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{props.closeModal(); props.enableScroll()}}></input>
+                    <input type = "submit" value = "Atšaukti" className="btn btn-danger btn-sm m-2" onClick={()=>{setNotSubmitted(false); props.closeModal(); props.enableScroll()}}></input>
             </form>}
         {!auth.isLoggedin() && !auth.isLoggedinAdmin() && 
             <div id="userNotLoggedIn" style={{zIndex:"2000", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", borderRadius: "10px", position: "fixed",  backgroundColor: "white"}} className = "container mt-5">
