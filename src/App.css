@@ -454,8 +454,9 @@
   }
 
   #cookiesPromptWindow {
-    width:90vw;
-    left:5%;
+    width:80%;
+    left:50%;
+    margin-left:-40%;
   }
 
   #userNotLoggedIn {
@@ -597,8 +598,9 @@
     align-items:flex-start
   }
   #cookiesPromptWindow {
-    width:90vw;
-    left:3%;
+    width:94%;
+    left:3vw;
+    margin-left: 0;
   }
 
   #userNotLoggedIn {
