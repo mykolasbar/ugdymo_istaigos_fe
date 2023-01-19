@@ -53,13 +53,13 @@ const MyPupils = () => {
             {(showDeleteModal === true || showEditModal === true) && <div style={{width:"100vw", height:"100vh", position:"fixed", backgroundColor:"grey", top: "0%", opacity:"0.6", zIndex:"1000"}}></div>}
             {loading ? (<div style = {{height:"50vw", width: "100%", display:"flex", justifyContent:"center", alignItems:"center"}}>Turinys kraunasi <span className="material-symbols-outlined">hourglass_top</span></div>) :
                 (orders.length > 0 ? 
-                <div style={{width:"100%", display:"inline-grid", flexWrap:"wrap", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gridAutoRows:"270px", rowGap:"20px", justifyItems:"center"}}>
+                <div style={{width:"100%", display:"grid", flexWrap:"wrap", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gridAutoRows:"270px", rowGap:"20px", justifyItems:"center", marginBottom:"50px"}}>
                     {orders.map((order, index) =>
-                        <div key = {order.id} style = {{margin: "8px", backgroundSize: "cover", backgroundPosition: "center", minWidth:"200px", maxWidth:"600px"}}>
+                        <div key = {order.id} style = {{margin: "8px", backgroundSize: "cover", backgroundPosition: "center", width:"320px"}}>
                             <div style = {{backgroundColor: "black", color: "white", borderRadius: "10px 10px 0 0", padding: "8px", width: "100%"}}>{order.name}</div>
                             <div style ={{padding:"8px", backgroundColor: "#ebfaf9", borderRadius: "0 0 10px 10px", minHeight:"240px", }}>
                                 <div style={{minHeight:"120px"}}><b>Mokinio vardas, pavardė: </b> {order.name} <br/> <b>Mokyklos adresas: </b>{order.idnumber} <br/> <b>Gimimo data: </b>{order.dateofbirth} <br/> <b>Klasė: </b>{order.class} </div> 
-                                <input className="btn btn-danger btn-sm mt-2 rounded-0" type = "button" onClick = {() => {setDeletionId(deletionId=order.id); setShowDeleteModal(true); disableScroll()}} value = "Trinti mokinį"></input>
+                                <input className="btn btn-danger btn-sm mt-2 rounded-0" type = "button" onClick = {() => {setDeletionId(deletionId=order.id); setShowDeleteModal(true); disableScroll()}} value = "Trinti mokinį"></input><br />
                                 <button className="btn btn-dark btn-sm mt-2 rounded-0" onClick={()=>{setPupilData(pupilData=order); setShowEditModal(true); disableScroll()}}>Atnaujinti mokinio duomenis</button>
                             </div>
                         </div>
