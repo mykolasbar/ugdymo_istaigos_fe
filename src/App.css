@@ -44,7 +44,7 @@
 
 #schoolBox {
   width: 48%;
-  height: 200px;
+  min-height: 200px;
 }
 
 #schoolsBox {
