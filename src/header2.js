@@ -38,14 +38,14 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
         <nav id="mainnav">
                 <div id = "container">
                     <div id = "headersmall">
-                        <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
+                        <div style={{display:"flex", heigh:"100%", flexDirection:"row", alignItems:"center"}}>
                             <div><Link to="/customer"><img id = "logo" src = { require("./ikona_be_fono.png") } alt="logo" /></Link></div>
-                            <Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link>
                         </div>
+                        <div style = {{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center"}}><Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link></div>
                         <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
                             <div onClick = {()=>{setShowMainDropdown(!showMainDropdown)}}><BurgerMenu/></div>
                             {window.innerWidth < 720 &&
-                            <div style ={{marginLeft:"20px", display:"flex", alignItems:"center"}}>
+                            <div style ={{display:"flex", alignItems:"center"}}>
                                 <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setResetNotifs(resetNotifs+1)}}>notifications</span>
                                 {notif.getNotifsArray().length > 0 && <div style = {{color:"red", fontSize:'12px'}}><b>{notif.getNotifsArray().length}</b></div>}
                             </div>}
