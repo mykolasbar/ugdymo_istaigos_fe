@@ -3,7 +3,7 @@ import React from 'react';
 const BurgerMenu = () => {
     return (<>
         {/* <div style={{margin:"20px"}}> */}
-            <div className = "burgrmenu" style = {{margin:"20px 20px 20px 20px", cursor:"pointer"}} id = "burgermenu">
+            <div className = "burgrmenu" style = {{margin:"20px", cursor:"pointer"}} id = "burgermenu">
                 <div className = "burgerlayer"></div>
                 <div className = "burgerlayer"></div>
                 <div className = "burgerlayer"></div>

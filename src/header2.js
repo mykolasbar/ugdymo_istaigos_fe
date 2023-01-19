@@ -28,19 +28,30 @@ useEffect(()=>{
     return () => clearTimeout(timer)
 }, [])
 
+useEffect(()=>{console.log(window.innerWidth)}, [])
+
 
 window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && showAccountDropdown === true) setShowAccountDropdown(false); else if(e.target != dropdownRef.current && showNotif === true){setShowNotif(false)}})
 
     return (
         <>
         <nav id="mainnav">
-            <div id="containertop">
+            {/* <div id="containertop"> */}
                 <div id = "container">
                     <div id = "headersmall">
                         <div><Link to="/customer"><img id = "logo" src = { require("./ikona_be_fono.png") } alt="logo" /></Link></div>
                         <Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link>
                         <div onClick = {()=>{setShowMainDropdown(!showMainDropdown)}}><BurgerMenu/></div>
                         <div style={{flexDirection:"column"}}>
+                        <div style={{flexDirection:"column"}}>
+                        {window.innerWidth < 720 &&
+                        <div>
+                            <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setResetNotifs(resetNotifs+1)}}>notifications</span>
+                            {notif.getNotifsArray().length > 0 && <div style = {{color:"red", fontSize:'12px'}}><b>{notif.getNotifsArray().length}</b></div>}
+                        </div>}
+                    {showNotif && <div id = "dropdownContainer">{<Notification resetNotifs = {resetNotifs}/>}</div>}
+                </div>
+
                     </div>
                     </div>
                     <div id="allbuttonsnav" style = {{display: showMainDropdown && "flex"}}>
@@ -72,18 +83,16 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                                 <div style = {{display: showAccountDropdown ? "block" : "none"}} id = "dropdownContainer">{<AccountDropdown/>}</div>
                             </div>
                         </div>
+                        {window.innerWidth > 720 &&
+                        <div>
+                            <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setResetNotifs(resetNotifs+1)}}>notifications</span>
+                            {notif.getNotifsArray().length > 0 && <div style = {{color:"red", fontSize:'12px'}}><b>{notif.getNotifsArray().length}</b></div>}
+                        </div>}
                         </>
                         )}
                     </div>
                 </div>
-                <div style={{flexDirection:"column"}}>
-                    <div id="notificationbigscreen">
-                        <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setResetNotifs(resetNotifs+1)}}>notifications</span>
-                        {notif.getNotifsArray().length > 0 && <div style = {{color:"red", fontSize:'12px'}}><b>{notif.getNotifsArray().length}</b></div>}
-                    </div>
-                    <div style = {{display: showNotif ? "block" : "none"}} id = "dropdownContainer">{<Notification resetNotifs = {resetNotifs}/>}</div>
-                </div>
-            </div>
+            {/* </div> */}
         </nav>
         {showCookiesPrompt && <CookiesPropt />}
         </>
