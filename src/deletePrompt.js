@@ -23,8 +23,8 @@ const DeletePrompt = (props) => {
 
     return (
         <>
-        {deleteSuccess ? <div  style = {{padding:"30px 40px", border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"40%", top:"30%"}}>Mokinys ištrintas iš sistemos</div> :
-        <div style = {{padding:"30px 40px", border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"40%", top:"30%", zIndex:"5000"}}>
+        {deleteSuccess ? <div  style = {{padding:"30px 40px", border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", top:"30%"}}>Mokinys ištrintas iš sistemos</div> :
+        <div style = {{width:"320px", padding:"30px 40px", border: "1px solid grey", borderRadius: "10px", position: "fixed", backgroundColor:"white", left:"calc(50vw - 160px)", top:"30%", zIndex:"5000"}}>
             <div>Ar tikrai norite ištrinti mokinį?</div>
             <div style={{display:"flex", flexDirection:"row"}}>
                 <input className="btn btn-dark btn-sm m-2 rounded-0" style={{width:"100px"}} onClick = {() => {handleDelete()}} value = "Trinti mokinį"></input>

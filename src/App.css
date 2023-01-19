@@ -243,7 +243,8 @@
   border-radius: 10px;
   position: fixed;
   background-color: white;
-  left:25%;
+  left:50%;
+  margin-left:-25%;
   z-index:2500;
   width:50vw;
   top:40%; 
