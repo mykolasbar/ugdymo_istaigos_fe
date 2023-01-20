@@ -49,9 +49,12 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                                 <span className="material-symbols-outlined" style={{cursor:"pointer", color:"white"}} ref = {dropdownRef} onClick = {()=>{setShowNotif(!showNotif); setResetNotifs(resetNotifs+1)}}>notifications</span>
                                 {notif.getNotifsArray().length > 0 && <div style = {{color:"red", fontSize:'12px'}}><b>{notif.getNotifsArray().length}</b></div>}
                             </div>}
+                            {showNotif && <div id = "dropdownContainer">{<Notification resetNotifs = {resetNotifs}/>}</div>}
+
                         </div>
-                        {showNotif && <div id = "dropdownContainer">{<Notification resetNotifs = {resetNotifs}/>}</div>}
+
                     </div>
+
                     <div id="allbuttonsnav" style = {{display: showMainDropdown && "flex"}}>
                         <div id="leftmenu">
                             <div>

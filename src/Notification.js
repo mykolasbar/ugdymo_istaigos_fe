@@ -19,7 +19,7 @@ const Notifications = (props) => {
     return (
         <>
             {notif.getNotifsArray().length === 0 ? 
-            <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000", right:"0%"}}>
+            <div style = {{justifyContent:"center", flexDirection:"column", listStyle: "none", fontSize: "15px", fontFamily: "Helvetica", backgroundColor: "black", color: "white", position: "absolute", zIndex: "+1000", right:"0%", top:"63px"}}>
                 <div id = "dropdownitem">Naujų pranešimų nėra</div> 
             </div>    
                 :
