@@ -49,7 +49,7 @@ This is the frontend repository. You can access the backend repository <a href =
 
 Previous instructions (deprecated):
 
-<div style = "color:#8c8b8b">
+<span style = "color:grey">
 The project is not deployed online, so in order to view it, you will have to download it from github and launch it on the live server.
 
 <ul>
@@ -60,6 +60,6 @@ The project is not deployed online, so in order to view it, you will have to dow
     <li>In case your do not have it, install npm (node package manager) and launch the development server from the app directory with your cli (npm start). The user page should load</li>
     <li>To reach the admin section, register an account (http://localhost:3000/register) and login with your credentials</li>
 </ul>
-</div>
+</span>
 
 Made by Mykolas Baranauskas. <a href = "https://www.linkedin.com/in/mykolas-baranauskas-b3809b110/" target = "_blank">Linkedin</a>.
