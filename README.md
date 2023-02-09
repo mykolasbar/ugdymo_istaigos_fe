@@ -4,7 +4,7 @@ A school management system with registered user and admin roles, in addition to 
 
 Pupil's date of birth automatically extracted, appropriately formatted and stored on the database from the pupil's personal ID code.
 
-UPDATE: Added "User account" section with page for the pupils added by the user, functionality for updating pupil's data, requests page with a list of user's requests, account settings page (ability to change password and other info to be added). Added notifications functionality (user receives a notification when admin confirms a request from a specific pupil to join a school). A lot of UI appearance updates, including version for mobile. App deployed on Heroku, images uploaded by admin stored on AWS S3.
+<b>UPDATE</b>: Added "User account" section with page for the pupils added by the user, functionality for updating pupil's data, requests page with a list of user's requests, account settings page (ability to change password and other info to be added). Added notifications functionality (user receives a notification when admin confirms a request from a specific pupil to join a school). A lot of UI appearance updates, including version for mobile. App deployed on Heroku, images uploaded by admin stored on AWS S3.
 
 React.js used for frontend and Laravel for backend. Used token-based authentication with sanctum, in addition to protected routes on the frontend.
 
@@ -45,7 +45,7 @@ This is the frontend repository. You can access the backend repository <a href =
 
 <h2>Launch instructions</h2>
 
-UPDATE: App is currently accessible at: <aa href="https://ugdymoistaigosfe.herokuapp.com/">https://ugdymoistaigosfe.herokuapp.com/</a>
+<b>UPDATE</b>: App is currently accessible at: <aa href="https://ugdymoistaigosfe.herokuapp.com/">https://ugdymoistaigosfe.herokuapp.com/</a>
 
 Previous instructions (deprecated):
 
