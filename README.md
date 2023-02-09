@@ -45,11 +45,11 @@ This is the frontend repository. You can access the backend repository <a href =
 
 <h2>Launch instructions</h2>
 
-<b>UPDATE</b>: App is currently accessible at: <aa href="https://ugdymoistaigosfe.herokuapp.com/">https://ugdymoistaigosfe.herokuapp.com/</a>
+<b>UPDATE</b>: App is currently accessible at: <a href="https://ugdymoistaigosfe.herokuapp.com/" target="_blank">https://ugdymoistaigosfe.herokuapp.com/</a>
 
 Previous instructions (deprecated):
 
-<span style = "color:grey">
+<span style = "text-decoration: line-through">
 The project is not deployed online, so in order to view it, you will have to download it from github and launch it on the live server.</span>
 
 <ul>
