@@ -63,7 +63,7 @@ export let AuthProvider = ({children}) => {
     let getUser = () => user;
     let getAdmin = () => admin;
     let getToken = () => token;
-    let isLoggedin = () => (user && role === "user" ? true : false);
+    let isLoggedin = () => (user && (role === "user" || role === "admin") ? true : false);
     let isLoggedinAdmin = () => (user && role === "admin" ? true : false);
 
 

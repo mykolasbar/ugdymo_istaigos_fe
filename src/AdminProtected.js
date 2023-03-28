@@ -6,14 +6,20 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 const AdminProtected = ({ children }) => {
 
     let auth = useContext(AuthContext)
+    let [loaded, setLoaded] = useState(false)
 
-    if (!auth.isLoggedinAdmin()) {
+    useEffect(()=>{setLoaded(true)},[auth.isLoggedin()])
 
-        return <Navigate to="/" replace />;
+    if (loaded) {
+        if (auth.isLoggedinAdmin() === false) {
+            return <Navigate to="/" replace />;
+        }
+        else {
+            return children;
+        }
     }
-    
 
-    return children;
+
 };
 
 export default AdminProtected;

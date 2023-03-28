@@ -51,6 +51,8 @@ const Customer2 = () => {
         setPage(page = pageNumber)
     }
 
+    console.log(auth.isLoggedinAdmin())
+
     useEffect(() => {
         setLoading(true)
         let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools";

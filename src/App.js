@@ -31,38 +31,38 @@ import Footer from './footer';
 function App() {
   return (
     <>
-    <CookiesProvider>
-      <BrowserRouter>
-        <AuthProvider>
-          <NotifProvider>
-          <Routes>
-            <Route path="/" element={<Customer2/>} />
-            <Route path='/customer' element={<Customer2/>} />
-            <Route path='/addpupil' element={<Order/>} />
-            {/* <Route path="/mypupils" element={<MyPupils />} />
-            <Route path="/myorders" element={<MyOrders />} /> */}
-            <Route path="/updatepupil/:id" element={<EditPupil />} />
-            <Route path='/registerpupil/:id' element={<RegisterPupil/>} />
-            <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
-                <Route path='editschools' default element={<Schools/>} />
-                <Route path='editrequests' element={<Requests/>} />
-                <Route path ='newschool' element = {<NewSchool />}/>
-                <Route index element={<Schools/>} />
-            </Route>
-            <Route path='/user' element={<Protected><UserSidebar /></Protected>}>
-                <Route path="/user/mypupils" element={<MyPupils />} />
-                <Route path="/user/myorders" element={<MyOrders />} />
-                <Route path="/user/accountsettings" element={<AccountSettings />} />
-                <Route index element={<MyPupils/>} />
-            </Route>
-            <Route path ='editschool/:id' element = {<AdminProtected><EditSchool /></AdminProtected>}/>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </Routes>
-          </NotifProvider>
-        </AuthProvider>
-      </BrowserRouter>
-    </CookiesProvider>
+      <CookiesProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <NotifProvider>
+            <Routes>
+              <Route path="/" element={<Customer2/>} />
+              <Route path='/customer' element={<Customer2/>} />
+              <Route path='/addpupil' element={<Order/>} />
+              {/* <Route path="/mypupils" element={<MyPupils />} />
+              <Route path="/myorders" element={<MyOrders />} /> */}
+              {/* <Route path="/updatepupil/:id" element={<EditPupil />} />
+              <Route path='/registerpupil/:id' element={<RegisterPupil/>} /> */}
+              <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
+                  <Route path='editschools' default element={<Schools/>} />
+                  <Route path='editrequests' element={<Requests/>} />
+                  <Route path ='newschool' element = {<NewSchool />}/>
+                  <Route index element={<Schools/>} />
+              </Route>
+              <Route path='/user' element={<Protected><UserSidebar /></Protected>}>
+                  <Route path="/user/mypupils" element={<MyPupils />} />
+                  <Route path="/user/myorders" element={<MyOrders />} />
+                  <Route path="/user/accountsettings" element={<AccountSettings />} />
+                  <Route index element={<MyPupils/>} />
+              </Route>
+              <Route path ='editschool/:id' element = {<AdminProtected><EditSchool /></AdminProtected>}/>
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
+            </NotifProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </CookiesProvider>
     </>
   );
 }
