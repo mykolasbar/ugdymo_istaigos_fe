@@ -39,8 +39,8 @@ function App() {
             <Route path="/" element={<Customer2/>} />
             <Route path='/customer' element={<Customer2/>} />
             <Route path='/addpupil' element={<Order/>} />
-            <Route path="/mypupils" element={<MyPupils />} />
-            <Route path="/myorders" element={<MyOrders />} />
+            {/* <Route path="/mypupils" element={<MyPupils />} />
+            <Route path="/myorders" element={<MyOrders />} /> */}
             <Route path="/updatepupil/:id" element={<EditPupil />} />
             <Route path='/registerpupil/:id' element={<RegisterPupil/>} />
             <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
@@ -49,7 +49,7 @@ function App() {
                 <Route path ='newschool' element = {<NewSchool />}/>
                 <Route index element={<Schools/>} />
             </Route>
-            <Route path='/user' element={<UserSidebar />}>
+            <Route path='/user' element={<Protected><UserSidebar /></Protected>}>
                 <Route path="/user/mypupils" element={<MyPupils />} />
                 <Route path="/user/myorders" element={<MyOrders />} />
                 <Route path="/user/accountsettings" element={<AccountSettings />} />
