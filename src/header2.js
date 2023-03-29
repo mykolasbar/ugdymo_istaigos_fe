@@ -41,7 +41,7 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                         <div style={{display:"flex", heigh:"100%", flexDirection:"row", alignItems:"center", marginLeft:"2px"}}>
                             <div><Link to="/customer"><img id = "logo" src = { require("./ikona_be_fono.png") } alt="logo" /></Link></div>
                         </div>
-                        <div style = {{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center"}}><Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link></div>
+                        <div style = {{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"left"}}><Link to="/customer" id="title"><h2>Ugdymo įstaigos</h2></Link></div>
                         <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
                             <div onClick = {()=>{setShowMainDropdown(!showMainDropdown)}}><BurgerMenu/></div>
                             {window.innerWidth < 720 &&
@@ -79,7 +79,7 @@ window.addEventListener('click', (e)=>{if (e.target != buttonRef.current && show
                         <>
                         <div id="rightmenu">
                             <div style={{flexDirection:"column"}}>
-                                <div id="mainmenuitem" style={{minWidth:"140px"}}><Link to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
+                                <div id="mainmenuitem" style={{}}><Link to="/user" style={{textDecoration:"none"}}><strong style={{color:"white"}}>{auth.getUser().name}</strong></Link>
                                 <span ref = {buttonRef} className="material-symbols-outlined" style={{cursor:"pointer"}} onClick={()=>{setShowAccountDropdown(!showAccountDropdown)}}>expand_more</span></div>
                                 <div style = {{display: showAccountDropdown ? "block" : "none"}} id = "dropdownContainer">{<AccountDropdown/>}</div>
                             </div>
