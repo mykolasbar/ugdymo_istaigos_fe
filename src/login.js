@@ -8,6 +8,7 @@ const Login = () => {
     let [data, setData] = useState({})
     let navigate = useNavigate()
     let auth = useContext(AuthContext)
+    let [loginFailed, setLoginFailed] = useState(false)
 
 
     const handleData = (event) => {
@@ -17,17 +18,19 @@ const Login = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         fetch("https://ugdymoistaigosbe.herokuapp.com/api/login", {method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-        // .then(console.log(JSON.stringify(data)))
         .then(response => response.json())
         .then((response) => {
             console.log(response)
-            auth.login(response.user, response.token, response.user.role);
-            if (response.user.role === "admin")
-            navigate("/admin");
-            if (response.user.role === "user")
-            navigate("/customer");
+            if (response.response === 'Neteisingi prisijungimo duomenys') {setLoginFailed(true)}
+            else {
+                auth.login(response.user, response.token, response.user.role);
+                if (response.user.role === "admin")
+                navigate("/admin");
+                if (response.user.role === "user")
+                navigate("/customer");
+            }
         });
-};
+    };
 
     return (
         <>
@@ -43,29 +46,33 @@ const Login = () => {
 
                             <form className="mx-1 mx-md-4" onSubmit = { handleSubmit }>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                                <div className="form-outline flex-fill mb-0">
-                                <input onChange={ handleData } type="email" name="email" className="form-control" />
-                                <label className="form-label" htmlFor="email">Jūsų el. paštas</label>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                    <div className="form-outline flex-fill mb-0">
+                                    <input onChange={ handleData } type="email" name="email" className="form-control" style={{borderStyle: "1px solid", borderColor : loginFailed && "red"}} />
+                                    <label className="form-label" htmlFor="email">Jūsų el. paštas</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
-                                <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                <div className="form-outline flex-fill mb-0">
-                                <input onChange={ handleData } type="password" name="password" className="form-control" />
-                                <label className="form-label" htmlFor="password">Slaptažodis</label>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                    <div className="form-outline flex-fill mb-0">
+                                    <input onChange={ handleData } type="password" name="password" className="form-control" style={{borderStyle: "1px solid", borderColor : loginFailed && "red"}}/>
+                                    <label className="form-label" htmlFor="password">Slaptažodis</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="d-flex flex-row align-items-center mb-4">
-                                <span className = "m-3">Dar neturite paskyros? <Link to="/register">Užsiregistruokite</Link>.</span>
-                            </div>
+                                <div style = {{display: loginFailed ? "block" : "none", color:"red", marginLeft:"15px"}}>
+                                    Neteisingai suvesti prisijungimo duomenys.
+                                </div>
 
-                            <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                            <button type="submit" className="btn btn-primary btn-lg">Prisijungti</button>
-                            </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <span className = "m-3">Dar neturite paskyros? <Link to="/register">Užsiregistruokite</Link>.</span>
+                                </div>
+
+                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" className="btn btn-primary btn-lg">Prisijungti</button>
+                                </div>
 
                             </form>
                         </div>
