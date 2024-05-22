@@ -1,5 +1,6 @@
 {
   "homepage": "https://mykolasbar.github.io/ugdymo_platforma_fe/",
+  "name": "ugdymo_platforma_fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
