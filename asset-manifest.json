@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/ugdymo_platforma_fe/static/css/main.68881fc1.css",
-    "main.js": "/ugdymo_platforma_fe/static/js/main.f805a353.js",
-    "static/js/787.7efd31bd.chunk.js": "/ugdymo_platforma_fe/static/js/787.7efd31bd.chunk.js",
+    "main.js": "/ugdymo_platforma_fe/static/js/main.750901bc.js",
+    "static/js/787.f406c4b9.chunk.js": "/ugdymo_platforma_fe/static/js/787.f406c4b9.chunk.js",
     "static/media/ikona_be_fono.png": "/ugdymo_platforma_fe/static/media/ikona_be_fono.91b426a95d29fa5921a4.png",
     "static/media/logo.svg": "/ugdymo_platforma_fe/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/ugdymo_platforma_fe/index.html",
     "main.68881fc1.css.map": "/ugdymo_platforma_fe/static/css/main.68881fc1.css.map",
-    "main.f805a353.js.map": "/ugdymo_platforma_fe/static/js/main.f805a353.js.map",
-    "787.7efd31bd.chunk.js.map": "/ugdymo_platforma_fe/static/js/787.7efd31bd.chunk.js.map"
+    "main.750901bc.js.map": "/ugdymo_platforma_fe/static/js/main.750901bc.js.map",
+    "787.f406c4b9.chunk.js.map": "/ugdymo_platforma_fe/static/js/787.f406c4b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.68881fc1.css",
-    "static/js/main.f805a353.js"
+    "static/js/main.750901bc.js"
   ]
 }
