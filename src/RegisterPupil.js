@@ -31,14 +31,14 @@ const RegisterPupil = (props) => {
     useEffect(() => {
         let id = auth.getUser()?.id;
         console.log(userId)
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/pupils/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {return setPupils(pupils = result)})
         }, [userId]);
 
     useEffect(() => {
         if (pupilId != '') {
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/pupil/" + pupilId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/pupil/" + pupilId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setPupil(pupil = result)})}
         }, [pupilId]);
@@ -47,18 +47,18 @@ const RegisterPupil = (props) => {
     let handleSubmit = (e) => {
         e.preventDefault();
         if (pupilId !== '') {
-            fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
+            fetch("https://ugdymo-istaiga.fly.dev/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'requests_id' : pupilId, 'schools_id' : props.schoolId})})
             .then(()=>{setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif)})
             .then(() => {if (status === "Mokinys užregistruotas sėkmingai") {setTimeout(() => {props.closeModal(); props.enableScroll(); navigate('/customer')}, 4000)}})}
         else {
             if (data.idnumber == '' || data.idnumber == null || data.name == '' || data.name == null || data.class == '' || data.class == null)
                 {setNotSubmitted(true); console.log(notSubmitted)}
             else {
-                fetch("https://ugdymoistaigosbe.herokuapp.com/api/newpupil", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+                fetch("https://ugdymo-istaiga.fly.dev/api/newpupil", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
                 .then(response => response.json())
                 .then(response => {
                     if (response.message ==  "Mokinys pridėtas sėkmingai") {
-                        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
+                        fetch("https://ugdymo-istaiga.fly.dev/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify({'schools_id' : props.schoolId})})
                         setStatus(status = "Mokinys užregistruotas sėkmingai"); setShowNotif(!showNotif); setNotSubmitted(false)}
                     if (response.message ==  "Toks mokinys jau yra") 
                         {setStatus(status = "Toks mokinys jau yra")}

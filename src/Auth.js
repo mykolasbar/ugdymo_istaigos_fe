@@ -43,7 +43,7 @@ export let AuthProvider = ({children}) => {
     // };
 
     let logout = () => {
-        fetch('https://ugdymoistaigosbe.herokuapp.com/api/logout', {method: "POST", headers: { Accept: "application/json", Authorization: `Bearer ${token}` }})
+        fetch('https://ugdymo-istaiga.fly.dev/api/logout', {method: "POST", headers: { Accept: "application/json", Authorization: `Bearer ${token}` }})
         .then(
             (response) => {
                 localStorage.removeItem("token");

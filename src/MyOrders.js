@@ -18,7 +18,7 @@ const MyOrders = () => {
     useEffect(() => {
         setLoading(true)
         let id = auth.getUser()?.id;
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/userorders/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/userorders/" + userId, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result); notif.setNotifications()})
         .then(()=>setLoading(false))

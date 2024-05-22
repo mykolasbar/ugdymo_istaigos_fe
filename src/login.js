@@ -17,7 +17,7 @@ const Login = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/login", {method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        fetch("https://ugdymo-istaiga.fly.dev/api/login", {method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
         .then(response => response.json())
         .then((response) => {
             console.log(response)
@@ -34,8 +34,8 @@ const Login = () => {
 
     return (
         <>
-                <div className="container h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="container h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col-lg-12 col-xl-11">
                     <div className="card text-black border-0">
                     <div className="card-body p-md-5">

@@ -11,7 +11,7 @@ const Notifications = (props) => {
 
     useEffect(() => {
         if (props.resetNotifs == 2)
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/makeviewed/" + auth.getUser()?.id, {method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/makeviewed/" + auth.getUser()?.id, {method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(()=>notif.setNotifications())
     }, [props.resetNotifs]);
 

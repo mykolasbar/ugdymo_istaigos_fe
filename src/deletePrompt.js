@@ -9,7 +9,7 @@ const DeletePrompt = (props) => {
 
     let handleDelete = (id) => {
         console.log(id)
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/deletepupil/" + props.deletionId, {method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/deletepupil/" + props.deletionId, {method: 'DELETE', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(()=>setDeleteSuccess(true))
         .then(()=>props.enableScroll())
         .then(()=>{props.refreshing()})

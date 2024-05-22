@@ -15,14 +15,14 @@ const Requests = () => {
 
 
     useEffect(() => {
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/showallrequests", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/showallrequests", {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setOrders(orders = result); console.log(orders)})
     }, [refresh]);
 
     let confirmReservation = (orderId) => {
         // event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/confirmrequest/" + orderId, {method: 'PUT', headers: { Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/confirmrequest/" + orderId, {method: 'PUT', headers: { Authorization: `Bearer ${auth.getToken()}` }})
         .then(() => {
             notif.setNotifications()
             notif.newRequests()

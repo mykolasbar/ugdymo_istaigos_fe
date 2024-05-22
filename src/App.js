@@ -23,7 +23,6 @@ import Header from './header';
 import Notification from './Notification';
 import EditPupil from './EditPupil';
 import AccountSettings from './accountSettings';
-// import Protected from './protected';
 import { AuthContext, AuthProvider } from './Auth';
 import { NotifProvider, NotifContext } from './NotifContext';
 import Footer from './footer';
@@ -39,10 +38,6 @@ function App() {
               <Route path="/" element={<Customer2/>} />
               <Route path='/customer' element={<Customer2/>} />
               <Route path='/addpupil' element={<Order/>} />
-              {/* <Route path="/mypupils" element={<MyPupils />} />
-              <Route path="/myorders" element={<MyOrders />} /> */}
-              {/* <Route path="/updatepupil/:id" element={<EditPupil />} />
-              <Route path='/registerpupil/:id' element={<RegisterPupil/>} /> */}
               <Route path='/admin' element={<AdminProtected ><Admin /></AdminProtected>}>
                   <Route path='editschools' default element={<Schools/>} />
                   <Route path='editrequests' element={<Requests/>} />

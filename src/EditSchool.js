@@ -22,7 +22,7 @@ const EditSchool = () => {
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1])
         }
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/school/" + id + "?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
+        fetch("https://ugdymo-istaiga.fly.dev/api/school/" + id + "?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
         // .then(response => console.log(response.status))
         // .then(response => response.json())
         .then(response=>{if (response.status) setStatus('Mokykla atnaujinta sėkmingai.'); setShowNotif(true)})
@@ -32,7 +32,7 @@ const EditSchool = () => {
     }
 
     useEffect(() => {
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/school/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/school/" + id, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then(response => response.json())
         .then((result) => {setSchool(school = result)})
         }, [refresh]);

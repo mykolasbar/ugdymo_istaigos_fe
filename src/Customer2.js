@@ -55,7 +55,7 @@ const Customer2 = () => {
 
     useEffect(() => {
         setLoading(true)
-        let url = "https://ugdymoistaigosbe.herokuapp.com/api/schools";
+        let url = "https://ugdymo-istaiga.fly.dev/api/schools";
 
         fetch(url, {method: 'GET', headers: { 'Content-Type': 'application/json' }})
         .then((response) => {if (response.ok) return response.json(); else throw Error("Serverio klaida")})
@@ -67,7 +67,7 @@ const Customer2 = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
+        fetch("https://ugdymo-istaiga.fly.dev/api/newrequest", {method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }, body: JSON.stringify(data)})
         .then(() => {
             console.log(data)
         setData({})
@@ -78,7 +78,7 @@ const Customer2 = () => {
         setShowSearchResults(!showSearchResults)
         // event.preventDefault()
         console.log(query)
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
+        fetch("https://ugdymo-istaiga.fly.dev/api/search?query=" + query, {method: 'GET', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${auth.getToken()}` }})
         .then(response => response.json())
         .then((result) => {setLoading(false); setSchools(schools = result)})
         .then(console.log(schools))

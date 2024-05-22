@@ -12,7 +12,7 @@ const NewSchool = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault()
-        fetch("https://ugdymoistaigosbe.herokuapp.com/api/addschool?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
+        fetch("https://ugdymo-istaiga.fly.dev/api/addschool?_method=put", {method: 'POST', headers: { Authorization: `Bearer ${auth.getToken()}` }, body: formData})
         .then(response=>response.json())
         .then(result => {console.log(result); setData({})})
     }
